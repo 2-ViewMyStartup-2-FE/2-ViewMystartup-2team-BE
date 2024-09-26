@@ -15,14 +15,14 @@ datasource db {
 
 model Company {
   id                    String   @id @default(uuid())
-  LogoImage             String[]
-  Name                  String
-  Description           String
-  Category              String
-  Revenue               Int
-  Employee              Int
-  ActualInvestAmount    Int
-  SimulatedInvestAmount Int
-  MyChosenCount         Int
-  ComparedChosenCount   Int
+  logoImage             String[]
+  name                  String
+  description           String
+  category              String
+  revenue               Int
+  employee              Int
+  actualInvestAmount    Int
+  simulatedInvestAmount Int
+  myChosenCount         Int
+  comparedChosenCount   Int
 }
