@@ -3,6 +3,6 @@ import { getCountList } from "../controllers/countController.js";
 
 const router = express.Router();
 
-router.get("/company/counts", getCountList);
+router.get("/companies/counts", getCountList);
 
 export default router;
