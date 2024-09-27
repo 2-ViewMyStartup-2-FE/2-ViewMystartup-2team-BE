@@ -5,25 +5,20 @@ const prisma = new PrismaClient();
 
 export const getCountList = asyncHandler(async (req, res) => {
   const { page = 1, limit = 10, order = "myCountHighest" } = req.query;
-  const parsedPage = Number(page) > 0 ? Number(page) : 1;
-  const parsedLimit = Number(limit) > 0 ? Number(limit) : 10;
-  const offset = (parsedPage - 1) * parsedLimit;
+  const pageNum = Number(page) > 0 ? Number(page) : 1;
+  const limitNum = Number(limit) > 0 ? Number(limit) : 10;
+  const offset = (pageNum - 1) * parsedLimit;
 
-  let orderBy;
-  switch (order) {
-    case "myCountHighest":
-      orderBy = { myChosenCount: "desc" };
-      break;
-    case "myCountLowest":
-      orderBy = { myChosenCount: "asc" };
-      break;
-    case "comparedHighest":
-      orderBy = { comparedChosenCount: "desc" };
-      break;
-    case "comparedLowest":
-      orderBy = { comparedChosenCount: "asc" };
-      break;
-  }
+  const orderBy =
+    order === "myCountHighest"
+      ? { myChosenCount: "desc" }
+      : order === "myCountLowest"
+      ? { myChosenCount: "asc" }
+      : order === "comparedHighest"
+      ? { comparedChosenCount: "desc" }
+      : order === "comparedLowest"
+      ? { comparedChosenCount: "asc" }
+      : { myChosenCount: "desc" }; // 기본값 설정
 
   const selectFields = {
     logoImage: true,
@@ -37,7 +32,7 @@ export const getCountList = asyncHandler(async (req, res) => {
   const countList = await prisma.company.findMany({
     orderBy,
     skip: offset,
-    take: parsedLimit,
+    take: limitNum,
     select: selectFields,
   });
   res.send(countList);
