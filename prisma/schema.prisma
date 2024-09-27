@@ -13,8 +13,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-//수정해서 사용
-model MockInvestor {
-  id   String @id @default(uuid())
-  name String
+model Company {
+  id                    String @id @default(uuid())
+  logoImage             String @default("")
+  name                  String
+  description           String
+  category              String
+  revenue               Int
+  employee              Int
+  actualInvestAmount    Int    @default(0)
+  simulatedInvestAmount Int    @default(0)
+  myChosenCount         Int    @default(0)
+  comparedChosenCount   Int    @default(0)
 }
