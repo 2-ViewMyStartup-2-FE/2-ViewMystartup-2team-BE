@@ -4,7 +4,9 @@ import { COMPANIES } from "./mock.js";
 const prisma = new PrismaClient();
 
 async function main() {
-  // 목 데이터 추가, 수정해서 사용
+  // 목 데이터 삭제
+  await prisma.company.deleteMany();
+  // 목 데이터 추가
   await prisma.company.createMany({
     data: COMPANIES,
     skipDuplicates: true,

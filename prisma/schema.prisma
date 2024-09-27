@@ -21,8 +21,8 @@ model Company {
   category              String
   revenue               Int
   employee              Int
-  actualInvestAmount    Int    @default(0)
-  simulatedInvestAmount Int    @default(0)
+  actualInvestAmount    BigInt @default(0)
+  simulatedInvestAmount BigInt @default(0)
   myChosenCount         Int    @default(0)
   comparedChosenCount   Int    @default(0)
 }
