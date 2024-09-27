@@ -37,3 +37,21 @@ export const getCountList = asyncHandler(async (req, res) => {
   });
   res.send(countList);
 });
+
+export const putMyCount = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const updateCount = await prisma.company.update({
+    where: { id },
+    data: { myChosenCount: { increment: 1 } },
+  });
+  res.send(updateCount);
+});
+
+export const putComparedCount = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const updateCount = await prisma.company.update({
+    where: { id },
+    data: { comparedChosenCount: { increment: 1 } },
+  });
+  res.send(updateCount);
+});
