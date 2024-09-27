@@ -13,7 +13,7 @@ GET http://localhost:3000/api/companies/counts?order=comparedHighest
 GET http://localhost:3000/api/companies/counts?order=comparedLowest
 
 ###
-PUT http://localhost:3000/api/companies/3cd245e0-f8b2-4a95-a10f-6dfc68e8c2d2/my-chosen-count
+PATCH  http://localhost:3000/api/companies/3cd245e0-f8b2-4a95-a10f-6dfc68e8c2d2/my-chosen-count
 
 ###
-PUT http://localhost:3000/api/companies/5cfaeb59-3b1d-48e9-b100-85deffedb91c/putComparedCount
+PATCH  http://localhost:3000/api/companies/5cfaeb59-3b1d-48e9-b100-85deffedb91c/compared-chosen-count
