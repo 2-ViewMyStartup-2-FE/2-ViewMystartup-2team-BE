@@ -14,15 +14,15 @@ datasource db {
 }
 
 model Company {
-  id                    String   @id @default(uuid())
-  logoImage             String[]
+  id                    String @id @default(uuid())
+  logoImage             String @default("")
   name                  String
   description           String
   category              String
   revenue               Int
   employee              Int
-  actualInvestAmount    Int
-  simulatedInvestAmount Int
-  myChosenCount         Int
-  comparedChosenCount   Int
+  actualInvestAmount    Int    @default(0)
+  simulatedInvestAmount Int    @default(0)
+  myChosenCount         Int    @default(0)
+  comparedChosenCount   Int    @default(0)
 }
