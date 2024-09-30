@@ -261,3 +261,41 @@ export const COMPANIES = [
     comparedChosenCount: 16,
   },
 ];
+
+export const INVESTORS = [
+  {
+    name: "강명곤",
+    investmentAmount: 1000000000,
+    comment: "투자하고 싶은 스타트업이 많아서 고민 중입니다.",
+    password: 1111,
+    companyId: "3cd245e0-f8b2-4a95-a10f-6dfc68e8c2d2",
+  },
+  {
+    name: "김태연",
+    investmentAmount: 1500000000,
+    comment: "스타트업에 대한 관심이 많습니다.",
+    password: 2222,
+    companyId: "3cd245e0-f8b2-4a95-a10f-6dfc68e8c2d2",
+  },
+  {
+    name: "방신철",
+    investmentAmount: 2000000000,
+    comment: "스타트업에 투자하고 싶습니다.",
+    password: 3333,
+    companyId: "3cd245e0-f8b2-4a95-a10f-6dfc68e8c2d2",
+  },
+  {
+    name: "신지원",
+    investmentAmount: 2500000000,
+    comment: "스타트업에 대한 정보를 얻고 싶습니다.",
+    password: 4444,
+    companyId: "3cd245e0-f8b2-4a95-a10f-6dfc68e8c2d2",
+  },
+  {
+    name: "이예린",
+    investmentAmount: 3000000000,
+    comment: "스타트업에 대한 정보를 얻고 싶습니다.",
+    password: 5555,
+    companyId: "3cd245e0-f8b2-4a95-a10f-6dfc68e8c2d2",
+  },
+];

@@ -66,3 +66,17 @@ export const getInvestment = asyncHandler(async (req, res) => {
     res.send(serializedCompany);
   }
 });
+
+export const putInvestment = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const { simulatedInvestAmount } = req.body;
+
+  const company = await prisma.company.update({
+    where: { id },
+    data: {
+      simulatedInvestAmount,
+    },
+  });
+
+  res.send(company);
+});
