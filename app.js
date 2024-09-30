@@ -2,6 +2,8 @@ import * as dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 import countRoutes from "./routes/countRoutes.js";
+import companyRoutes from "./routes/companyRoutes.js";
+import investmentRoutes from "./routes/investmentRoutes.js";
 import cors from "cors";
 
 const app = express();
@@ -13,5 +15,7 @@ app.use(express.json());
 app.use(cors(corsOptions));
 
 app.use("/api", countRoutes);
+app.use("/api", companyRoutes);
+app.use("/api", investmentRoutes);
 
 app.listen(process.env.PORT || 3000, () => console.log("server started"));
