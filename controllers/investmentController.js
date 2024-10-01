@@ -42,8 +42,8 @@ export const getInvestmentList = asyncHandler(async (req, res) => {
   const serializedCompanyList = investmentList.map((company) => {
     return {
       ...company,
-      simulatedInvestAmount: company.simulatedInvestAmount.toLocaleString(),
-      actualInvestAmount: company.actualInvestAmount.toLocaleString(),
+      simulatedInvestAmount: company.simulatedInvestAmount.toString(),
+      actualInvestAmount: company.actualInvestAmount.toString(),
     };
   });
 
@@ -59,8 +59,8 @@ export const getInvestment = asyncHandler(async (req, res) => {
   if (company) {
     const serializedCompany = {
       ...company,
-      simulatedInvestAmount: company.simulatedInvestAmount.toLocaleString(),
-      actualInvestAmount: company.actualInvestAmount.toLocaleString(),
+      simulatedInvestAmount: company.simulatedInvestAmount.toString(),
+      actualInvestAmount: company.actualInvestAmount.toString(),
     };
 
     res.send(serializedCompany);

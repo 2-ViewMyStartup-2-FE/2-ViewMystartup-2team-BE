@@ -7,7 +7,7 @@ export const getCompanyList = asyncHandler(async (req, res) => {
   const {
     page = 1,
     limit = 10,
-    order = "nvestmentHighest",
+    order = "investmentHighest",
     search = "",
   } = req.query;
   const pageNum = parseInt(page) > 0 ? parseInt(page) : 1;
@@ -65,7 +65,7 @@ export const getCompanyList = asyncHandler(async (req, res) => {
   const serializedCompanyList = companyList.map((company) => {
     return {
       ...company,
-      actualInvestAmount: company.actualInvestAmount.toLocaleString(),
+      actualInvestAmount: company.actualInvestAmount.toString(),
     };
   });
 
@@ -81,8 +81,8 @@ export const getCompany = asyncHandler(async (req, res) => {
   if (company) {
     const serializedCompany = {
       ...company,
-      actualInvestAmount: company.actualInvestAmount.toLocaleString(),
-      simulatedInvestAmount: company.simulatedInvestAmount.toLocaleString(),
+      actualInvestAmount: company.actualInvestAmount.toString(),
+      simulatedInvestAmount: company.simulatedInvestAmount.toString(),
     };
     res.send(serializedCompany);
   }
