@@ -1,0 +1,19 @@
+GET http://localhost:3000/api/companies/counts
+
+###
+GET http://localhost:3000/api/companies/counts?page=0&limit=10&order=myCountHighest
+
+###
+GET http://localhost:3000/api/companies/counts?order=myCountLowest
+
+###
+GET http://localhost:3000/api/companies/counts?order=comparedHighest
+
+###
+GET http://localhost:3000/api/companies/counts?order=comparedLowest
+
+###
+PATCH  http://localhost:3000/api/companies/3cd245e0-f8b2-4a95-a10f-6dfc68e8c2d2/my-chosen-count
+
+###
+PATCH  http://localhost:3000/api/companies/5cfaeb59-3b1d-48e9-b100-85deffedb91c/compared-chosen-count

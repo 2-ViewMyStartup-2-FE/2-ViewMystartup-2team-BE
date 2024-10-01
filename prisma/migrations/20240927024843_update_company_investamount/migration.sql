@@ -1,0 +1,10 @@
+-- AlterTable
+ALTER TABLE "Company" ALTER COLUMN "actualInvestAmount" SET DEFAULT 0,
+ALTER COLUMN "actualInvestAmount" SET DATA TYPE BIGINT,
+ALTER COLUMN "comparedChosenCount" SET DEFAULT 0,
+ALTER COLUMN "logoImage" SET NOT NULL,
+ALTER COLUMN "logoImage" SET DEFAULT '',
+ALTER COLUMN "logoImage" SET DATA TYPE TEXT,
+ALTER COLUMN "myChosenCount" SET DEFAULT 0,
+ALTER COLUMN "simulatedInvestAmount" SET DEFAULT 0,
+ALTER COLUMN "simulatedInvestAmount" SET DATA TYPE BIGINT;
