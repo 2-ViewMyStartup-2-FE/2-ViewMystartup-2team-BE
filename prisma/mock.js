@@ -1,321 +1,475 @@
 export const COMPANIES = [
   {
-    id: "1eeb63b0-0f6c-4c7a-8a74-89b7b0914a8e",
-    logo: "",
-    name: "스타트업 A",
-    description: "최신 기술을 활용하여 문제를 해결하는 스타트업입니다.",
-    category: "IT",
-    revenue: 3000000,
-    employee: 30,
-    totalInvestment: 0,
-    actualInvestment: 1200000000,
-    virtualInvestment: 200000000,
-    myChosenCount: 35,
-    comparedChosenCount: 10,
+    id: "8d2f1c26-6f16-464e-829f-8fcf442634e3", // UUID 형식 추가
+    name: "기술 혁신",
+    logo: "https://example.com/logos/tech-innovations.png",
+    description: "기술 혁신을 선도하는 기업입니다.",
+    category: "기술",
+    actualInvestment: BigInt(30000000000), // 300억
+    virtualInvestment: BigInt(20000000000), // 200억
+    revenue: BigInt(12000000000), // 120억
+    employee: 50,
+    myChosenCount: 5,
+    comparedChosenCount: 10
   },
   {
-    id: "3cd245e0-f8b2-4a95-a10f-6dfc68e8c2d2",
-    logo: "",
-    name: "스타트업 B",
-    description: "모바일 애플리케이션 개발 전문 스타트업입니다.",
-    category: "모바일",
-    revenue: 2000000,
-    employee: 42,
-    totalInvestment: 0,
-    actualInvestment: 15000000000,
-    virtualInvestment: 1800000000,
-    myChosenCount: 25,
-    comparedChosenCount: 15,
-  },
-  {
-    id: "5f4e3e3c-e908-4e02-a59e-450c5a7c1f4e",
-    logo: "",
-    name: "스타트업 C",
-    description: "AI 솔루션을 제공하는 혁신적인 스타트업입니다.",
-    category: "AI",
-    revenue: 1700000,
-    employee: 13,
-    totalInvestment: 0,
-    actualInvestment: 2500000000,
-    virtualInvestment: 300000000,
-    myChosenCount: 40,
-    comparedChosenCount: 25,
-  },
-  {
-    id: "b26e5b77-3f94-45f1-82d0-6cb58e24de79",
-    logo: "",
-    name: "스타트업 D",
-    description: "블록체인 기반의 서비스를 제공하는 스타트업입니다.",
-    category: "블록체인",
-    revenue: 60000000,
-    employee: 120,
-    totalInvestment: 0,
-    actualInvestment: 1800000000,
-    virtualInvestment: 2400000000,
-    myChosenCount: 30,
-    comparedChosenCount: 20,
-  },
-  {
-    id: "d3f4f90c-9a06-4140-bc82-c580ff5bc8c4",
-    logo: "",
-    name: "스타트업 E",
-    description: "소셜 미디어 플랫폼을 개발하는 스타트업입니다.",
-    category: "소셜 미디어",
-    revenue: 8900000,
-    employee: 8,
-    totalInvestment: 0,
-    actualInvestment: 900000000,
-    virtualInvestment: 1300000000,
-    myChosenCount: 20,
-    comparedChosenCount: 10,
-  },
-  {
-    id: "f5c841c7-9456-4a05-bec1-d2f5d8eebd62",
-    logo: "",
-    name: "스타트업 F",
-    description: "헬스케어 기술을 혁신하는 스타트업입니다.",
-    category: "헬스케어",
-    revenue: -120000,
-    employee: 120,
-    totalInvestment: 0,
-    actualInvestment: 1000000000,
-    virtualInvestment: 2100000000,
-    myChosenCount: 22,
-    comparedChosenCount: 18,
-  },
-  {
-    id: "c3b23e1f-bcf4-4e9e-8470-f9d52c6cbaff",
-    logo: "",
-    name: "스타트업 G",
-    description: "IoT 기술을 활용한 솔루션을 제공하는 스타트업입니다.",
-    category: "IoT",
-    revenue: 10000000,
-    employee: 38,
-    totalInvestment: 0,
-    actualInvestment: 2200000000,
-    virtualInvestment: 2700000000,
-    myChosenCount: 45,
-    comparedChosenCount: 35,
-  },
-  {
-    id: "df95e350-0f72-4d7c-bf12-07346834e434",
-    logo: "",
-    name: "스타트업 H",
-    description: "스마트 홈 기술을 개발하는 스타트업입니다.",
-    category: "스마트 홈",
-    revenue: 56000000,
-    employee: 108,
-    totalInvestment: 0,
-    actualInvestment: 14000000000,
-    virtualInvestment: 16000000000,
-    myChosenCount: 15,
-    comparedChosenCount: 5,
-  },
-  {
-    id: "e5ab2a16-dc92-47b1-95b5-fef48e618b96",
-    logo: "",
-    name: "스타트업 I",
-    description: "교육 기술을 혁신하는 스타트업입니다.",
-    category: "교육",
-    revenue: 8700000,
-    employee: 75,
-    totalInvestment: 0,
-    actualInvestment: 110000000,
-    virtualInvestment: 1700000000,
-    myChosenCount: 27,
-    comparedChosenCount: 12,
-  },
-  {
-    id: "8f6d5b66-7b56-4e29-b5ed-b5aaf8c8575b",
-    logo: "",
-    name: "스타트업 J",
-    description: "가상 현실 기술을 활용하는 스타트업입니다.",
-    category: "VR",
-    revenue: -4800000,
-    employee: 64,
-    totalInvestment: 0,
-    actualInvestment: 1900000000,
-    virtualInvestment: 2500000000,
-    myChosenCount: 32,
-    comparedChosenCount: 15,
-  },
-  {
-    id: "5cfaeb59-3b1d-48e9-b100-85deffedb91c",
-    logo: "",
-    name: "스타트업 K",
-    description: "데이터 분석 서비스를 제공하는 스타트업입니다.",
-    category: "데이터",
-    revenue: -1240000,
-    employee: 45,
-    totalInvestment: 0,
-    actualInvestment: 1300000000,
-    virtualInvestment: 1800000000,
-    myChosenCount: 23,
-    comparedChosenCount: 16,
-  },
-  {
-    id: "7ea2542d-7f43-4e63-b0d3-d1c18c8d2932",
-    logo: "",
-    name: "스타트업 L",
-    description: "농업 기술 혁신 스타트업입니다.",
-    category: "농업",
-    revenue: -120000,
-    employee: 120,
-    totalInvestment: 0,
-    actualInvestment: 9000000000,
-    virtualInvestment: 1200000000,
-    myChosenCount: 18,
-    comparedChosenCount: 9,
-  },
-  {
-    id: "3a0bc7f1-99d0-4b82-bab8-50ac8f0b0eb9",
-    logo: "",
-    name: "스타트업 M",
-    description: "친환경 포장 솔루션을 제공하는 스타트업입니다.",
+    id: "7d1a2c26-6f16-464e-829f-8fcf442634e3", // UUID 형식 추가
+    name: "그린 솔루션",
+    logo: "https://example.com/logos/green-solutions.png",
+    description: "지속 가능한 미래를 위한 친환경 솔루션.",
     category: "환경",
-    revenue: 490000,
-    employee: 42,
-    totalInvestment: 0,
-    actualInvestment: 800000000,
-    virtualInvestment: 1100000000,
-    myChosenCount: 10,
-    comparedChosenCount: 5,
+    actualInvestment: BigInt(15000000000), // 150억
+    virtualInvestment: BigInt(5000000000), // 50억
+    revenue: BigInt(8000000000), // 80억
+    employee: 30,
+    myChosenCount: 3,
+    comparedChosenCount: 8
   },
   {
-    id: "c64ab844-c1b2-4f88-a8e6-803847bc5e0e",
-    logo: "",
-    name: "스타트업 N",
-    description: "디지털 마케팅 전문 스타트업입니다.",
+    id: "6d3f1c26-6f16-464e-829f-8fcf442634e3", // UUID 형식 추가
+    name: "헬스플러스",
+    logo: "https://example.com/logos/healthplus.png",
+    description: "모두를 위한 혁신적인 건강 솔루션.",
+    category: "헬스케어",
+    actualInvestment: BigInt(20000000000), // 200억
+    virtualInvestment: BigInt(10000000000), // 100억
+    revenue: BigInt(15000000000), // 150억
+    employee: 40,
+    myChosenCount: 7,
+    comparedChosenCount: 12
+  },
+  {
+    id: "5d4e1c26-6f16-464e-829f-8fcf442634e3", // UUID 형식 추가
+    name: "에듀테크",
+    logo: "https://example.com/logos/edutech.png",
+    description: "기술을 통한 교육 혁신.",
+    category: "교육",
+    actualInvestment: BigInt(5000000000), // 50억
+    virtualInvestment: BigInt(5000000000), // 50억
+    revenue: BigInt(6000000000), // 60억
+    employee: 20,
+    myChosenCount: 2,
+    comparedChosenCount: 5
+  },
+  {
+    id: "4d5f1c26-6f16-464e-829f-8fcf442634e3", // UUID 형식 추가
+    name: "푸드유나이티드",
+    logo: "https://example.com/logos/foodies-united.png",
+    description: "음식 애호가들을 연결해주는 플랫폼.",
+    category: "식음료",
+    actualInvestment: BigInt(15000000000), // 150억
+    virtualInvestment: BigInt(10000000000), // 100억
+    revenue: BigInt(7000000000), // 70억
+    employee: 25,
+    myChosenCount: 4,
+    comparedChosenCount: 6
+  },
+  {
+    id: "3d6g1c26-6f16-464e-829f-8fcf442634e3", // UUID 형식 추가
+    name: "여행 친구",
+    logo: "https://example.com/logos/travel-buddy.png",
+    description: "여행 계획을 위한 동반자.",
+    category: "여행",
+    actualInvestment: BigInt(10000000000), // 100억
+    virtualInvestment: BigInt(5000000000), // 50억
+    revenue: BigInt(4000000000), // 40억
+    employee: 15,
+    myChosenCount: 1,
+    comparedChosenCount: 3
+  },
+  {
+    id: "2d7h1c26-6f16-464e-829f-8fcf442634e3", // UUID 형식 추가
+    name: "패션 포워드",
+    logo: "https://example.com/logos/fashion-forward.png",
+    description: "최신 컬렉션으로 트렌드를 유지하세요.",
+    category: "패션",
+    actualInvestment: BigInt(20000000000), // 200억
+    virtualInvestment: BigInt(10000000000), // 100억
+    revenue: BigInt(9000000000), // 90억
+    employee: 35,
+    myChosenCount: 6,
+    comparedChosenCount: 9
+  },
+  {
+    id: "1d8i1c26-6f16-464e-829f-8fcf442634e3", // UUID 형식 추가
+    name: "홈 필수품",
+    logo: "https://example.com/logos/home-essentials.png",
+    description: "당신의 집을 위한 품질 좋은 제품.",
+    category: "소매",
+    actualInvestment: BigInt(25000000000), // 250억
+    virtualInvestment: BigInt(15000000000), // 150억
+    revenue: BigInt(11000000000), // 110억
+    employee: 60,
+    myChosenCount: 8,
+    comparedChosenCount: 11
+  },
+  {
+    id: "0d9j1c26-6f16-464e-829f-8fcf442634e3", // UUID 형식 추가
+    name: "디지털 마케팅 전문가",
+    logo: "https://example.com/logos/digital-marketing-pros.png",
+    description: "디지털 마케팅 전략의 전문성.",
     category: "마케팅",
-    revenue: 2200000,
-    employee: 93,
-    totalInvestment: 0,
-    actualInvestment: 170000000,
-    virtualInvestment: 210000000,
-    myChosenCount: 29,
-    comparedChosenCount: 14,
-  },
-  {
-    id: "1f20b6aa-cf02-4cd6-b28e-1af84e7ec8b9",
-    logo: "",
-    name: "스타트업 O",
-    description:
-      "인공지능 기반의 고객 서비스 솔루션을 개발하는 스타트업입니다.",
-    category: "AI",
-    revenue: 390000,
-    employee: 71,
-    totalInvestment: 0,
-    actualInvestment: 200000000,
-    virtualInvestment: 2600000000,
-    myChosenCount: 37,
-    comparedChosenCount: 22,
-  },
-  {
-    id: "d7d5c63e-740e-4af0-b174-8b408d39f3c3",
-    logo: "",
-    name: "스타트업 P",
-    description: "전자 상거래 플랫폼을 제공하는 스타트업입니다.",
-    category: "전자 상거래",
-    revenue: 50000000,
-    employee: 150,
-    totalInvestment: 0,
-    actualInvestment: 3000000000,
-    virtualInvestment: 800000000,
-    myChosenCount: 41,
-    comparedChosenCount: 21,
-  },
-  {
-    id: "dfe645d1-b504-4b89-9755-0a83e0bc50f0",
-    logo: "",
-    name: "스타트업 Q",
-    description: "기후 변화 대응 기술을 연구하는 스타트업입니다.",
-    category: "기후",
-    revenue: 150000,
+    actualInvestment: BigInt(8000000000), // 80억
+    virtualInvestment: BigInt(4000000000), // 40억
+    revenue: BigInt(5000000000), // 50억
     employee: 18,
-    totalInvestment: 0,
-    actualInvestment: 8000000000,
-    virtualInvestment: 9500000000,
-    myChosenCount: 13,
-    comparedChosenCount: 7,
+    myChosenCount: 2,
+    comparedChosenCount: 4
   },
   {
-    id: "6e972d7c-3c02-4c5c-8710-ef5cfc32a8b5",
-    logo: "",
-    name: "스타트업 R",
-    description: "로봇 공학 연구 및 개발을 전문으로 하는 스타트업입니다.",
-    category: "로봇 공학",
-    revenue: 6000000,
-    employee: 67,
-    totalInvestment: 0,
-    actualInvestment: 2500000000,
-    virtualInvestment: 2800000000,
-    myChosenCount: 39,
-    comparedChosenCount: 20,
+    id: "9d0k1c26-6f16-464e-829f-8fcf442634e3", // UUID 형식 추가
+    name: "스마트 홈",
+    logo: "https://example.com/logos/smart-homes.png",
+    description: "스마트 홈을 위한 혁신적인 솔루션.",
+    category: "기술",
+    actualInvestment: BigInt(35000000000), // 350억
+    virtualInvestment: BigInt(25000000000), // 250억
+    revenue: BigInt(20000000000), // 200억
+    employee: 70,
+    myChosenCount: 9,
+    comparedChosenCount: 14
   },
   {
-    id: "722a8cf2-43c0-4861-89e3-b52eb9e9b6c2",
-    logo: "",
-    name: "스타트업 S",
-    description: "금융 기술 솔루션을 제공하는 스타트업입니다.",
+    id: "c1a1e1c26-6f16-464e-829f-8fcf442634e3",
+    name: "모바일 혁신",
+    logo: "https://example.com/logos/mobile-innovation.png",
+    description: "모바일 솔루션의 새로운 기준.",
+    category: "기술",
+    actualInvestment: BigInt(12000000000), // 120억
+    virtualInvestment: BigInt(8000000000), // 80억
+    revenue: BigInt(9000000000), // 90억
+    employee: 55,
+    myChosenCount: 4,
+    comparedChosenCount: 7
+  },
+  {
+    id: "c2b1e1c26-6f16-464e-829f-8fcf442634e3",
+    name: "스마트 농업",
+    logo: "https://example.com/logos/smart-agriculture.png",
+    description: "농업의 혁신을 이끄는 스마트 솔루션.",
+    category: "농업",
+    actualInvestment: BigInt(20000000000), // 200억
+    virtualInvestment: BigInt(15000000000), // 150억
+    revenue: BigInt(13000000000), // 130억
+    employee: 45,
+    myChosenCount: 5,
+    comparedChosenCount: 10
+  },
+  {
+    id: "c3c1e1c26-6f16-464e-829f-8fcf442634e3",
+    name: "핀테크 솔루션",
+    logo: "https://example.com/logos/fintech-solutions.png",
+    description: "금융 혁신을 위한 핀테크 서비스.",
     category: "금융",
-    revenue: 9000000,
-    employee: 79,
-    totalInvestment: 0,
-    actualInvestment: 2000000000,
-    virtualInvestment: 2500000000,
-    myChosenCount: 47,
-    comparedChosenCount: 30,
+    actualInvestment: BigInt(25000000000), // 250억
+    virtualInvestment: BigInt(20000000000), // 200억
+    revenue: BigInt(19000000000), // 190억
+    employee: 60,
+    myChosenCount: 8,
+    comparedChosenCount: 12
   },
   {
-    id: "23847433-69d5-429e-9b9e-fd77f04e8b95",
-    logo: "",
-    name: "스타트업 T",
-    description: "자율 주행 기술을 연구하는 스타트업입니다.",
-    category: "자율 주행",
-    revenue: 4800000,
-    employee: 34,
-    totalInvestment: 0,
-    actualInvestment: 1300000000,
-    virtualInvestment: 1700000000,
-    myChosenCount: 33,
-    comparedChosenCount: 16,
+    id: "c4d1e1c26-6f16-464e-829f-8fcf442634e3",
+    name: "AI 헬스케어",
+    logo: "https://example.com/logos/ai-healthcare.png",
+    description: "AI를 활용한 혁신적인 헬스케어 솔루션.",
+    category: "헬스케어",
+    actualInvestment: BigInt(30000000000), // 300억
+    virtualInvestment: BigInt(25000000000), // 250억
+    revenue: BigInt(22000000000), // 220억
+    employee: 70,
+    myChosenCount: 9,
+    comparedChosenCount: 15
   },
+  {
+    id: "c5e1e1c26-6f16-464e-829f-8fcf442634e3",
+    name: "모바일 결제",
+    logo: "https://example.com/logos/mobile-payment.png",
+    description: "편리한 모바일 결제 솔루션.",
+    category: "금융",
+    actualInvestment: BigInt(18000000000), // 180억
+    virtualInvestment: BigInt(12000000000), // 120억
+    revenue: BigInt(14000000000), // 140억
+    employee: 50,
+    myChosenCount: 6,
+    comparedChosenCount: 11
+  },
+  {
+    id: "c6f1e1c26-6f16-464e-829f-8fcf442634e3",
+    name: "지속 가능한 에너지",
+    logo: "https://example.com/logos/sustainable-energy.png",
+    description: "지속 가능한 에너지 솔루션을 제공합니다.",
+    category: "환경",
+    actualInvestment: BigInt(22000000000), // 220억
+    virtualInvestment: BigInt(15000000000), // 150억
+    revenue: BigInt(16000000000), // 160억
+    employee: 65,
+    myChosenCount: 7,
+    comparedChosenCount: 13
+  },
+  {
+    id: "c7g1e1c26-6f16-464e-829f-8fcf442634e3",
+    name: "스마트 홈 기기",
+    logo: "https://example.com/logos/smart-home-devices.png",
+    description: "스마트 홈을 위한 다양한 기기.",
+    category: "기술",
+    actualInvestment: BigInt(28000000000), // 280억
+    virtualInvestment: BigInt(20000000000), // 200억
+    revenue: BigInt(21000000000), // 210억
+    employee: 75,
+    myChosenCount: 10,
+    comparedChosenCount: 14
+  },
+  {
+    id: "c8h1e1c26-6f16-464e-829f-8fcf442634e3",
+    name: "디지털 교육",
+    logo: "https://example.com/logos/digital-education.png",
+    description: "디지털 기반의 교육 솔루션.",
+    category: "교육",
+    actualInvestment: BigInt(10000000000), // 100억
+    virtualInvestment: BigInt(6000000000), // 60억
+    revenue: BigInt(8000000000), // 80억
+    employee: 40,
+    myChosenCount: 3,
+    comparedChosenCount: 9
+  },
+  {
+    id: "c9i1e1c26-6f16-464e-829f-8fcf442634e3",
+    name: "소셜 네트워크",
+    logo: "https://example.com/logos/social-network.png",
+    description: "사람들을 연결하는 소셜 플랫폼.",
+    category: "소셜 미디어",
+    actualInvestment: BigInt(17000000000), // 170억
+    virtualInvestment: BigInt(11000000000), // 110억
+    revenue: BigInt(13000000000), // 130억
+    employee: 50,
+    myChosenCount: 5,
+    comparedChosenCount: 10
+  },
+  {
+    id: "c10j1e1c26-6f16-464e-829f-8fcf442634e3",
+    name: "인공지능 마케팅",
+    logo: "https://example.com/logos/ai-marketing.png",
+    description: "AI를 활용한 마케팅 솔루션.",
+    category: "마케팅",
+    actualInvestment: BigInt(13000000000), // 130억
+    virtualInvestment: BigInt(9000000000), // 90억
+    revenue: BigInt(11000000000), // 110억
+    employee: 35,
+    myChosenCount: 4,
+    comparedChosenCount: 8
+  },
+  {
+    id: "c11k1e1c26-6f16-464e-829f-8fcf442634e3",
+    name: "헬스케어 플랫폼",
+    logo: "https://example.com/logos/healthcare-platform.png",
+    description: "모든 건강 정보를 한곳에.",
+    category: "헬스케어",
+    actualInvestment: BigInt(20000000000), // 200억
+    virtualInvestment: BigInt(15000000000), // 150억
+    revenue: BigInt(17000000000), // 170억
+    employee: 60,
+    myChosenCount: 6,
+    comparedChosenCount: 12
+  },
+  {
+    id: "c12l1e1c26-6f16-464e-829f-8fcf442634e3",
+    name: "가상 현실 플랫폼",
+    logo: "https://example.com/logos/vr-platform.png",
+    description: "가상 현실을 위한 혁신적인 플랫폼.",
+    category: "VR",
+    actualInvestment: BigInt(25000000000), // 250억
+    virtualInvestment: BigInt(20000000000), // 200억
+    revenue: BigInt(19000000000), // 190억
+    employee: 80,
+    myChosenCount: 7,
+    comparedChosenCount: 13
+  },
+  {
+    id: "c13m1e1c26-6f16-464e-829f-8fcf442634e3",
+    name: "데이터 분석",
+    logo: "https://example.com/logos/data-analytics.png",
+    description: "데이터 기반의 인사이트 제공.",
+    category: "데이터",
+    actualInvestment: BigInt(22000000000), // 220억
+    virtualInvestment: BigInt(15000000000), // 150억
+    revenue: BigInt(16000000000), // 160억
+    employee: 55,
+    myChosenCount: 6,
+    comparedChosenCount: 11
+  },
+  {
+    id: "c14n1e1c26-6f16-464e-829f-8fcf442634e3",
+    name: "로봇 공학",
+    logo: "https://example.com/logos/robotics.png",
+    description: "로봇 기술 혁신을 선도합니다.",
+    category: "로봇 공학",
+    actualInvestment: BigInt(30000000000), // 300억
+    virtualInvestment: BigInt(25000000000), // 250억
+    revenue: BigInt(22000000000), // 220억
+    employee: 75,
+    myChosenCount: 8,
+    comparedChosenCount: 14
+  },
+  {
+    id: "c15o1e1c26-6f16-464e-829f-8fcf442634e3",
+    name: "스마트 물류",
+    logo: "https://example.com/logos/smart-logistics.png",
+    description: "물류 혁신을 위한 스마트 솔루션.",
+    category: "물류",
+    actualInvestment: BigInt(15000000000), // 150억
+    virtualInvestment: BigInt(10000000000), // 100억
+    revenue: BigInt(12000000000), // 120억
+    employee: 40,
+    myChosenCount: 3,
+    comparedChosenCount: 9
+  },
+  {
+    id: "c16p1e1c26-6f16-464e-829f-8fcf442634e3",
+    name: "에너지 관리",
+    logo: "https://example.com/logos/energy-management.png",
+    description: "효율적인 에너지 관리 솔루션.",
+    category: "환경",
+    actualInvestment: BigInt(18000000000), // 180억
+    virtualInvestment: BigInt(12000000000), // 120억
+    revenue: BigInt(14000000000), // 140억
+    employee: 50,
+    myChosenCount: 5,
+    comparedChosenCount: 10
+  },
+  {
+    id: "c17q1e1c26-6f16-464e-829f-8fcf442634e3",
+    name: "스마트 시티",
+    logo: "https://example.com/logos/smart-city.png",
+    description: "스마트 시티 솔루션을 제공합니다.",
+    category: "기술",
+    actualInvestment: BigInt(20000000000), // 200억
+    virtualInvestment: BigInt(15000000000), // 150억
+    revenue: BigInt(17000000000), // 170억
+    employee: 65,
+    myChosenCount: 6,
+    comparedChosenCount: 11
+  },
+  {
+    id: "c18r1e1c26-6f16-464e-829f-8fcf442634e3",
+    name: "헬스케어 AI",
+    logo: "https://example.com/logs/healthcare-ai.png",
+    description: "AI 기반 헬스케어 솔루션.",
+    category: "헬스케어",
+    actualInvestment: BigInt(22000000000), // 220억
+    virtualInvestment: BigInt(17000000000), // 170억
+    revenue: BigInt(20000000000), // 200억
+    employee: 80,
+    myChosenCount: 9,
+    comparedChosenCount: 13
+  },
+  {
+    id: "c19s1e1c26-6f16-464e-829f-8fcf442634e3",
+    name: "인공지능 로봇",
+    logo: "https://example.com/logos/ai-robotics.png",
+    description: "AI를 활용한 로봇 기술.",
+    category: "로봇 공학",
+    actualInvestment: BigInt(30000000000), // 300억
+    virtualInvestment: BigInt(25000000000), // 250억
+    revenue: BigInt(23000000000), // 230억
+    employee: 90,
+    myChosenCount: 10,
+    comparedChosenCount: 15
+  },
+  {
+    id: "c20t1e1c26-6f16-464e-829f-8fcf442634e3",
+    name: "스마트 헬스",
+    logo: "https://example.com/logos/smart-health.png",
+    description: "스마트 건강 관리 솔루션.",
+    category: "헬스케어",
+    actualInvestment: BigInt(15000000000), // 150억
+    virtualInvestment: BigInt(10000000000), // 100억
+    revenue: BigInt(12000000000), // 120억
+    employee: 55,
+    myChosenCount: 4,
+    comparedChosenCount: 8
+  }
 ];
 
-export const INVESTORS = [
+export const INVESTMENTS = [
   {
-    name: "강명곤",
-    investmentAmount: 1000000000,
-    comment: "투자하고 싶은 스타트업이 많아서 고민 중입니다.",
-    password: 1111,
-    companyId: "3cd245e0-f8b2-4a95-a10f-6dfc68e8c2d2",
+    id: "1a2b3c4d-5e6f-7g8h-9i0j-k1l2m3n4o5p6", // UUID 형식
+    investorName: "투자자 A",
+    amount: 50000000000, // 500억
+    comment: "기술 혁신 프로젝트에 대한 초기 투자",
+    password: "password123",
+    companyId: "8d2f1c26-6f16-464e-829f-8fcf442634e3" // 기술 혁신
   },
   {
-    name: "김태연",
-    investmentAmount: 1500000000,
-    comment: "스타트업에 대한 관심이 많습니다.",
-    password: 2222,
-    companyId: "3cd245e0-f8b2-4a95-a10f-6dfc68e8c2d2",
+    id: "2a3b4c5d-6e7f-8g9h-0i1j-k2l3m4n5o6p7", // UUID 형식
+    investorName: "투자자 B",
+    amount: 20000000000, // 200억
+    comment: "그린 솔루션에 대한 지속적인 지원",
+    password: "securepass456",
+    companyId: "7d1a2c26-6f16-464e-829f-8fcf442634e3" // 그린 솔루션
   },
   {
-    name: "방신철",
-    investmentAmount: 2000000000,
-    comment: "스타트업에 투자하고 싶습니다.",
-    password: 3333,
-    companyId: "3cd245e0-f8b2-4a95-a10f-6dfc68e8c2d2",
+    id: "3a4b5c6d-7e8f-9g0h-1i2j-k3l4m5n6o7p8", // UUID 형식
+    investorName: "투자자 C",
+    amount: 30000000000, // 300억
+    comment: "헬스플러스의 성장 가능성에 대한 믿음",
+    password: "mypassword789",
+    companyId: "6d3f1c26-6f16-464e-829f-8fcf442634e3" // 헬스플러스
   },
   {
-    name: "신지원",
-    investmentAmount: 2500000000,
-    comment: "스타트업에 대한 정보를 얻고 싶습니다.",
-    password: 4444,
-    companyId: "3cd245e0-f8b2-4a95-a10f-6dfc68e8c2d2",
+    id: "4a5b6c7d-8e9f-0g1h-2i3j-k4l5m6n7o8p9", // UUID 형식
+    investorName: "투자자 D",
+    amount: 10000000000, // 100억
+    comment: "에듀테크 혁신을 위한 투자",
+    password: "edutechpass",
+    companyId: "5d4e1c26-6f16-464e-829f-8fcf442634e3" // 에듀테크
   },
   {
-    name: "이예린",
-    investmentAmount: 3000000000,
-    comment: "스타트업에 대한 정보를 얻고 싶습니다.",
-    password: 5555,
-    companyId: "3cd245e0-f8b2-4a95-a10f-6dfc68e8c2d2",
+    id: "5a6b7c8d-9e0f-1g2h-3i4j-k5l6m7n8o9p0", // UUID 형식
+    investorName: "투자자 E",
+    amount: 25000000000, // 250억
+    comment: "푸드유나이티드의 시장 확장 지원",
+    password: "foodpass321",
+    companyId: "4d5f1c26-6f16-464e-829f-8fcf442634e3" // 푸드유나이티드
   },
+  {
+    id: "6a7b8c9d-0e1f-2g3h-4i5j-k6l7m8n9o0p1", // UUID 형식
+    investorName: "투자자 F",
+    amount: 15000000000, // 150억
+    comment: "여행 친구 플랫폼에 대한 투자",
+    password: "travelpass654",
+    companyId: "3d6g1c26-6f16-464e-829f-8fcf442634e3" // 여행 친구
+  },
+  {
+    id: "7a8b9c0d-1e2f-3g4h-5i6j-k7l8m9n0o1p2", // UUID 형식
+    investorName: "투자자 G",
+    amount: 30000000000, // 300억
+    comment: "패션 포워드의 디자인 혁신 지원",
+    password: "fashionpass987",
+    companyId: "2d7h1c26-6f16-464e-829f-8fcf442634e3" // 패션 포워드
+  },
+  {
+    id: "8a9b0c1d-2e3f-4g5h-6i7j-k8l9m0n1o2p3", // UUID 형식
+    investorName: "투자자 H",
+    amount: 40000000000, // 400억
+    comment: "홈 필수품의 품질 개선을 위한 투자",
+    password: "homepass432",
+    companyId: "1d8i1c26-6f16-464e-829f-8fcf442634e3" // 홈 필수품
+  },
+  {
+    id: "9a0b1c2d-3e4f-5g6h-7i8j-k9l0m1n2o3p4", // UUID 형식
+    investorName: "투자자 I",
+    amount: 12000000000, // 120억
+    comment: "디지털 마케팅 전문가의 성장 지원",
+    password: "digitalpass876",
+    companyId: "0d9j1c26-6f16-464e-829f-8fcf442634e3" // 디지털 마케팅 전문가
+  },
+  {
+    id: "0a1b2c3d-4e5f-6g7h-8i9j-k0l1m2n3o4p5", // UUID 형식
+    investorName: "투자자 J",
+    amount: 60000000000, // 600억
+    comment: "스마트 홈 혁신을 위한 대규모 투자",
+    password: "smarthomepass",
+    companyId: "9d0k1c26-6f16-464e-829f-8fcf442634e3" // 스마트 홈
+  }
 ];

@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { asyncHandler } from "../middleware/asyncHandler.js";
+import { type } from "superstruct";
 
 const prisma = new PrismaClient();
 
@@ -8,7 +9,7 @@ export const getCompanyList = asyncHandler(async (req, res) => {
     page = 1,
     limit = 10,
     order = "investmentHighest",
-    search = "",
+    search = ""
   } = req.query;
   const pageNum = parseInt(page) > 0 ? parseInt(page) : 1;
   const limitNum = parseInt(limit) > 0 ? parseInt(limit) : 10;
@@ -38,20 +39,19 @@ export const getCompanyList = asyncHandler(async (req, res) => {
     category: true,
     revenue: true,
     employee: true,
-    totalInvestment: true,
+    // totalInvestment: true,
     virtualInvestment: true,
-    actualInvestment: true,
+    actualInvestment: true
   };
 
   const totalCount = await prisma.company.count({
     where: {
       OR: [
         { name: { contains: search, mode: "insensitive" } },
-        { category: { contains: search, mode: "insensitive" } },
-      ],
-    },
+        { category: { contains: search, mode: "insensitive" } }
+      ]
+    }
   });
-
   const companyList = await prisma.company.findMany({
     // orderBy,
     skip: offset,
@@ -60,28 +60,32 @@ export const getCompanyList = asyncHandler(async (req, res) => {
     where: {
       OR: [
         { name: { contains: search, mode: "insensitive" } },
-        { category: { contains: search, mode: "insensitive" } },
-      ],
-    },
+        { category: { contains: search, mode: "insensitive" } }
+      ]
+    }
   });
-
   const serializedCompanyList = companyList.map((company) => {
     return {
       ...company,
       totalInvestment: (
-        company.virtualInvestment + company.actualInvestment
+        BigInt(company.virtualInvestment) + BigInt(company.actualInvestment)
       ).toString(),
       actualInvestment: company.actualInvestment.toString(),
       virtualInvestment: company.virtualInvestment.toString(),
+      revenue: company.revenue.toString()
     };
   });
 
   // 새 sort 함수
   const orderedCompanyList = serializedCompanyList.sort((a, b) => {
-    return order === "investmentHighest"
-      ? b.totalInvestment - a.totalInvestment
+    const totalA = BigInt(a.virtualInvestment) + BigInt(a.actualInvestment); // 수정된 부분
+    const totalB = BigInt(b.virtualInvestment) + BigInt(b.actualInvestment);
+    return;
+
+    order === "investmentHighest"
+      ? totalB - totalA
       : order === "investmentLowest"
-      ? a.totalInvestment - b.totalInvestment
+      ? totalA - totalB
       : order === "revenueHighest"
       ? b.revenue - a.revenue
       : order === "revenueLowest"
@@ -90,7 +94,7 @@ export const getCompanyList = asyncHandler(async (req, res) => {
       ? b.employee - a.employee
       : order === "employeeLowest"
       ? a.employee - b.employee
-      : b.totalInvestment - a.totalInvestment; // 기본값
+      : totalB - totalA; // 기본값
   });
 
   res.send({ data: orderedCompanyList, totalCount: totalCount });
@@ -99,17 +103,18 @@ export const getCompanyList = asyncHandler(async (req, res) => {
 export const getCompany = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const company = await prisma.company.findUnique({
-    where: { id },
+    where: { id }
   });
 
   if (company) {
     const serializedCompany = {
       ...company,
       totalInvestment: (
-        company.virtualInvestment + company.actualInvestment
+        BigInt(company.virtualInvestment) + BigInt(company.actualInvestment)
       ).toString(),
       actualInvestment: company.actualInvestment.toString(),
       virtualInvestment: company.virtualInvestment.toString(),
+      revenue: company.revenue.toString()
     };
     res.send(serializedCompany);
   }

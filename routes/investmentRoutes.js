@@ -1,14 +1,10 @@
 import express from "express";
-import {
-  getInvestmentList,
-  getInvestment,
-  patchInvestment,
-} from "../controllers/investmentController.js";
+import // getInvestmentList,
+// getInvestment,
+// patchInvestment
+"../controllers/investmentController.js";
 
 const router = express.Router();
 
-router.get("/investments", getInvestmentList);
-router.get("/investments/:id", getInvestment);
-router.patch("/investments/:id", patchInvestment);
-
+//router.get("/companies/:id/investment", getInvestmentList);
 export default router;
