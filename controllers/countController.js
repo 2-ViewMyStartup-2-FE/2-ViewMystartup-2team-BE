@@ -21,7 +21,7 @@ export const getCountList = asyncHandler(async (req, res) => {
       : { myChosenCount: "desc" }; // 기본값 설정
 
   const selectFields = {
-    logoImage: true,
+    logo: true,
     name: true,
     description: true,
     category: true,
@@ -35,10 +35,13 @@ export const getCountList = asyncHandler(async (req, res) => {
     take: limitNum,
     select: selectFields,
   });
-  res.send(countList);
+
+  const totalCount = await prisma.company.count();
+
+  res.send({ data: countList, totalCount: totalCount });
 });
 
-export const putMyCount = asyncHandler(async (req, res) => {
+export const patchMyCount = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const updateCount = await prisma.company.update({
     where: { id },
@@ -47,7 +50,7 @@ export const putMyCount = asyncHandler(async (req, res) => {
   res.send(updateCount);
 });
 
-export const putComparedCount = asyncHandler(async (req, res) => {
+export const patchComparedCount = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const updateCount = await prisma.company.update({
     where: { id },

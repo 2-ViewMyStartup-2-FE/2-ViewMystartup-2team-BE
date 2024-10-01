@@ -10,24 +10,25 @@ export const getInvestmentList = asyncHandler(async (req, res) => {
   const offset = (pageNum - 1) * limitNum;
 
   const orderBy =
-    order === "simulatedInvestHighest"
-      ? { simulatedInvestAmount: "desc" }
-      : order === "simulatedInvestLowest"
-      ? { simulatedInvestAmount: "asc" }
+    order === "virtualInvestHighest"
+      ? { virtualInvestment: "desc" }
+      : order === "virtualInvestLowest"
+      ? { virtualInvestment: "asc" }
       : order === "actualInvestHighest"
-      ? { actualInvestAmount: "desc" }
+      ? { actualInvestment: "desc" }
       : order === "actualInvestLowest"
-      ? { actualInvestAmount: "asc" }
-      : { simulatedInvestAmount: "desc" }; // 기본값 설정
+      ? { actualInvestment: "asc" }
+      : { virtualInvestment: "desc" }; // 기본값 설정
 
   const selectFields = {
     id: true,
-    logoImage: true,
+    logo: true,
     name: true,
     description: true,
     category: true,
-    simulatedInvestAmount: true,
-    actualInvestAmount: true,
+    totalInvestment: true,
+    virtualInvestment: true,
+    actualInvestment: true,
   };
 
   const totalCount = await prisma.company.count();
@@ -42,8 +43,11 @@ export const getInvestmentList = asyncHandler(async (req, res) => {
   const serializedCompanyList = investmentList.map((company) => {
     return {
       ...company,
-      simulatedInvestAmount: company.simulatedInvestAmount.toString(),
-      actualInvestAmount: company.actualInvestAmount.toString(),
+      totalInvestment: (
+        company.virtualInvestment + company.actualInvestment
+      ).toString(),
+      virtualInvestment: company.virtualInvestment.toString(),
+      actualInvestment: company.actualInvestment.toString(),
     };
   });
 
@@ -52,22 +56,39 @@ export const getInvestmentList = asyncHandler(async (req, res) => {
 
 export const getInvestment = asyncHandler(async (req, res) => {
   const { id } = req.params;
+
+  const selectFields = {
+    id: true,
+    logo: true,
+    name: true,
+    description: true,
+    category: true,
+    totalInvestment: true,
+    virtualInvestment: true,
+    actualInvestment: true,
+  };
+
   const company = await prisma.company.findUnique({
     where: { id },
+    select: selectFields,
   });
 
   if (company) {
     const serializedCompany = {
       ...company,
-      simulatedInvestAmount: company.simulatedInvestAmount.toString(),
-      actualInvestAmount: company.actualInvestAmount.toString(),
+      totalInvestment: (
+        company.virtualInvestment + company.actualInvestment
+      ).toString(),
+      virtualInvestment: company.virtualInvestment.toString(),
+      actualInvestment: company.actualInvestment.toString(),
     };
 
     res.send(serializedCompany);
   }
 });
 
-export const putInvestment = asyncHandler(async (req, res) => {
+//patch 구현 필요
+export const patchInvestment = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const { simulatedInvestAmount } = req.body;
 

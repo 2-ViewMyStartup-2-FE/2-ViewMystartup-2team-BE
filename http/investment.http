@@ -10,5 +10,5 @@ PATCH http://localhost:3000/api/investments/df95e350-0f72-4d7c-bf12-07346834e434
 Content-Type: application/json
 
 {
-  "simulatedInvestAmount": "1,000,000,000"
+  "simulatedInvest":"200000000"
 }
