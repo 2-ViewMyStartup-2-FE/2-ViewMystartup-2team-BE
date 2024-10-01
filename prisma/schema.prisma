@@ -14,15 +14,26 @@ datasource db {
 }
 
 model Company {
-  id                    String @id @default(uuid())
-  logoImage             String @default("")
+  id                    String     @id @default(uuid())
+  logoImage             String     @default("")
   name                  String
   description           String
   category              String
   revenue               Int
   employee              Int
-  actualInvestAmount    BigInt @default(0)
-  simulatedInvestAmount BigInt @default(0)
-  myChosenCount         Int    @default(0)
-  comparedChosenCount   Int    @default(0)
+  actualInvestAmount    BigInt     @default(0)
+  simulatedInvestAmount BigInt     @default(0)
+  myChosenCount         Int        @default(0)
+  comparedChosenCount   Int        @default(0)
+  investor              Investor[]
+}
+
+model Investor {
+  id               String  @id @default(uuid())
+  name             String
+  investmentAmount BigInt  @default(0)
+  comment          String
+  password         Int
+  company          Company @relation(fields: [companyId], references: [id])
+  companyId        String
 }
