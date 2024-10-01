@@ -7,6 +7,15 @@ GET http://localhost:3000/api/companies?page=0&limit=10&order=investmentLowest
 GET http://localhost:3000/api/companies?page=0&limit=10&order=investmentHighest
 
 ###
+GET http://localhost:3000/api/companies?page=0&limit=10&order=revenueHighest
+
+###
+GET http://localhost:3000/api/companies?page=0&limit=10&order=revenueLowest
+
+###
+GET http://localhost:3000/api/companies?page=0&limit=10&order=employeeHighest
+
+###
 
 GET http://localhost:3000/api/companies?page=0&limit=10&order=revenueHighest&search=스타트업%20A
 
