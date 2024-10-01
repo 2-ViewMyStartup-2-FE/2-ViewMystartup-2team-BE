@@ -23,7 +23,7 @@ model Company {
   employee            Int
   totalInvestment     BigInt     @default(0)
   actualInvestment    BigInt     @default(0)
-  simulatedInvestment BigInt     @default(0)
+  virtualInvestment   BigInt     @default(0)
   myChosenCount       Int        @default(0)
   comparedChosenCount Int        @default(0)
   investor            Investor[]

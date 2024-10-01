@@ -10,15 +10,15 @@ export const getInvestmentList = asyncHandler(async (req, res) => {
   const offset = (pageNum - 1) * limitNum;
 
   const orderBy =
-    order === "simulatedInvestHighest"
-      ? { simulatedInvestment: "desc" }
-      : order === "simulatedInvestLowest"
-      ? { simulatedInvestment: "asc" }
+    order === "virtualInvestHighest"
+      ? { virtualInvestment: "desc" }
+      : order === "virtualInvestLowest"
+      ? { virtualInvestment: "asc" }
       : order === "actualInvestHighest"
       ? { actualInvestment: "desc" }
       : order === "actualInvestLowest"
       ? { actualInvestment: "asc" }
-      : { simulatedInvestment: "desc" }; // 기본값 설정
+      : { virtualInvestment: "desc" }; // 기본값 설정
 
   const selectFields = {
     id: true,
@@ -27,7 +27,7 @@ export const getInvestmentList = asyncHandler(async (req, res) => {
     description: true,
     category: true,
     totalInvestment: true,
-    simulatedInvestment: true,
+    virtualInvestment: true,
     actualInvestment: true,
   };
 
@@ -44,9 +44,9 @@ export const getInvestmentList = asyncHandler(async (req, res) => {
     return {
       ...company,
       totalInvestment: (
-        company.simulatedInvestment + company.actualInvestment
+        company.virtualInvestment + company.actualInvestment
       ).toString(),
-      simulatedInvestment: company.simulatedInvestment.toString(),
+      virtualInvestment: company.virtualInvestment.toString(),
       actualInvestment: company.actualInvestment.toString(),
     };
   });
@@ -64,7 +64,7 @@ export const getInvestment = asyncHandler(async (req, res) => {
     description: true,
     category: true,
     totalInvestment: true,
-    simulatedInvestment: true,
+    virtualInvestment: true,
     actualInvestment: true,
   };
 
@@ -77,9 +77,9 @@ export const getInvestment = asyncHandler(async (req, res) => {
     const serializedCompany = {
       ...company,
       totalInvestment: (
-        company.simulatedInvestment + company.actualInvestment
+        company.virtualInvestment + company.actualInvestment
       ).toString(),
-      simulatedInvestment: company.simulatedInvestment.toString(),
+      virtualInvestment: company.virtualInvestment.toString(),
       actualInvestment: company.actualInvestment.toString(),
     };
 

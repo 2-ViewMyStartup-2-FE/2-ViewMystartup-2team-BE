@@ -39,7 +39,7 @@ export const getCompanyList = asyncHandler(async (req, res) => {
     revenue: true,
     employee: true,
     totalInvestment: true,
-    simulatedInvestment: true,
+    virtualInvestment: true,
     actualInvestment: true,
   };
 
@@ -69,10 +69,10 @@ export const getCompanyList = asyncHandler(async (req, res) => {
     return {
       ...company,
       totalInvestment: (
-        company.simulatedInvestment + company.actualInvestment
+        company.virtualInvestment + company.actualInvestment
       ).toString(),
       actualInvestment: company.actualInvestment.toString(),
-      simulatedInvestment: company.simulatedInvestment.toString(),
+      virtualInvestment: company.virtualInvestment.toString(),
     };
   });
 
@@ -106,10 +106,10 @@ export const getCompany = asyncHandler(async (req, res) => {
     const serializedCompany = {
       ...company,
       totalInvestment: (
-        company.simulatedInvestment + company.actualInvestment
+        company.virtualInvestment + company.actualInvestment
       ).toString(),
       actualInvestment: company.actualInvestment.toString(),
-      simulatedInvestment: company.simulatedInvestment.toString(),
+      virtualInvestment: company.virtualInvestment.toString(),
     };
     res.send(serializedCompany);
   }
