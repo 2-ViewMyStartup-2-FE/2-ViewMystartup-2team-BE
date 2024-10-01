@@ -16,9 +16,9 @@ export const getCompanyList = asyncHandler(async (req, res) => {
 
   const orderBy =
     order === "investmentHighest"
-      ? { actualInvestAmount: "desc" }
+      ? { totalInvest: "desc" }
       : order === "investmentLowest"
-      ? { actualInvestAmount: "asc" }
+      ? { totalInvest: "asc" }
       : order === "revenueHighest"
       ? { revenue: "desc" }
       : order === "revenueLowest"
@@ -27,17 +27,19 @@ export const getCompanyList = asyncHandler(async (req, res) => {
       ? { employee: "desc" }
       : order === "employeeLowest"
       ? { employee: "asc" }
-      : { actualInvestAmount: "desc" }; // 기본값 설정
+      : { totalInvest: "desc" }; // 기본값 설정
 
   const selectFields = {
     id: true,
-    logoImage: true,
+    logo: true,
     name: true,
     description: true,
     category: true,
     revenue: true,
     employee: true,
-    actualInvestAmount: true,
+    totalInvest: true,
+    simulatedInvest: true,
+    actualInvest: true,
   };
 
   const totalCount = await prisma.company.count({
@@ -65,7 +67,9 @@ export const getCompanyList = asyncHandler(async (req, res) => {
   const serializedCompanyList = companyList.map((company) => {
     return {
       ...company,
-      actualInvestAmount: company.actualInvestAmount.toString(),
+      totalInvest: (company.simulatedInvest + company.actualInvest).toString(),
+      actualInvest: company.actualInvest.toString(),
+      simulatedInvest: company.simulatedInvest.toString(),
     };
   });
 
@@ -81,8 +85,9 @@ export const getCompany = asyncHandler(async (req, res) => {
   if (company) {
     const serializedCompany = {
       ...company,
-      actualInvestAmount: company.actualInvestAmount.toString(),
-      simulatedInvestAmount: company.simulatedInvestAmount.toString(),
+      totalInvest: (company.simulatedInvest + company.actualInvest).toString(),
+      actualInvest: company.actualInvest.toString(),
+      simulatedInvest: company.simulatedInvest.toString(),
     };
     res.send(serializedCompany);
   }

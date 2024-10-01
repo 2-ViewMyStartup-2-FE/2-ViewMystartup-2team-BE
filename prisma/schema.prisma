@@ -14,18 +14,19 @@ datasource db {
 }
 
 model Company {
-  id                    String     @id @default(uuid())
-  logoImage             String     @default("")
-  name                  String
-  description           String
-  category              String
-  revenue               Int
-  employee              Int
-  actualInvestAmount    BigInt     @default(0)
-  simulatedInvestAmount BigInt     @default(0)
-  myChosenCount         Int        @default(0)
-  comparedChosenCount   Int        @default(0)
-  investor              Investor[]
+  id                  String     @id @default(uuid())
+  logo                String     @default("")
+  name                String
+  description         String
+  category            String
+  revenue             Int
+  employee            Int
+  totalInvest         BigInt     @default(0)
+  actualInvest        BigInt     @default(0)
+  simulatedInvest     BigInt     @default(0)
+  myChosenCount       Int        @default(0)
+  comparedChosenCount Int        @default(0)
+  investor            Investor[]
 }
 
 model Investor {
@@ -34,6 +35,6 @@ model Investor {
   investmentAmount BigInt  @default(0)
   comment          String
   password         Int
-  company          Company @relation(fields: [companyId], references: [id])
+  company          Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
   companyId        String
 }

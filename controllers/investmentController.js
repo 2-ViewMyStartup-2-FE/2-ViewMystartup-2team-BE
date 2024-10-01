@@ -11,23 +11,24 @@ export const getInvestmentList = asyncHandler(async (req, res) => {
 
   const orderBy =
     order === "simulatedInvestHighest"
-      ? { simulatedInvestAmount: "desc" }
+      ? { simulatedInvest: "desc" }
       : order === "simulatedInvestLowest"
-      ? { simulatedInvestAmount: "asc" }
+      ? { simulatedInvest: "asc" }
       : order === "actualInvestHighest"
-      ? { actualInvestAmount: "desc" }
+      ? { actualInvest: "desc" }
       : order === "actualInvestLowest"
-      ? { actualInvestAmount: "asc" }
-      : { simulatedInvestAmount: "desc" }; // 기본값 설정
+      ? { actualInvest: "asc" }
+      : { simulatedInvest: "desc" }; // 기본값 설정
 
   const selectFields = {
     id: true,
-    logoImage: true,
+    logo: true,
     name: true,
     description: true,
     category: true,
-    simulatedInvestAmount: true,
-    actualInvestAmount: true,
+    totalInvest: true,
+    simulatedInvest: true,
+    actualInvest: true,
   };
 
   const totalCount = await prisma.company.count();
@@ -42,8 +43,9 @@ export const getInvestmentList = asyncHandler(async (req, res) => {
   const serializedCompanyList = investmentList.map((company) => {
     return {
       ...company,
-      simulatedInvestAmount: company.simulatedInvestAmount.toString(),
-      actualInvestAmount: company.actualInvestAmount.toString(),
+      totalInvest: (company.simulatedInvest + company.actualInvest).toString(),
+      simulatedInvest: company.simulatedInvest.toString(),
+      actualInvest: company.actualInvest.toString(),
     };
   });
 
@@ -52,22 +54,36 @@ export const getInvestmentList = asyncHandler(async (req, res) => {
 
 export const getInvestment = asyncHandler(async (req, res) => {
   const { id } = req.params;
+
+  const selectFields = {
+    id: true,
+    logo: true,
+    name: true,
+    description: true,
+    category: true,
+    totalInvest: true,
+    simulatedInvest: true,
+    actualInvest: true,
+  };
+
   const company = await prisma.company.findUnique({
     where: { id },
+    select: selectFields,
   });
 
   if (company) {
     const serializedCompany = {
       ...company,
-      simulatedInvestAmount: company.simulatedInvestAmount.toString(),
-      actualInvestAmount: company.actualInvestAmount.toString(),
+      totalInvest: (company.simulatedInvest + company.actualInvest).toString(),
+      simulatedInvest: company.simulatedInvest.toString(),
+      actualInvest: company.actualInvest.toString(),
     };
 
     res.send(serializedCompany);
   }
 });
 
-export const putInvestment = asyncHandler(async (req, res) => {
+export const patchInvestment = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const { simulatedInvestAmount } = req.body;
 

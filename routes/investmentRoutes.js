@@ -2,13 +2,13 @@ import express from "express";
 import {
   getInvestmentList,
   getInvestment,
-  putInvestment,
+  patchInvestment,
 } from "../controllers/investmentController.js";
 
 const router = express.Router();
 
 router.get("/investments", getInvestmentList);
 router.get("/investments/:id", getInvestment);
-router.put("/investments/:id", putInvestment);
+router.patch("/investments/:id", patchInvestment);
 
 export default router;
