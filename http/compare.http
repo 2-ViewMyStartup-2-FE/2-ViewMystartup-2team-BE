@@ -1,0 +1,24 @@
+GET http://localhost:3000/api/comparison
+
+###
+GET http://localhost:3000/api/comparison?page=0&limit=10&order=recent
+
+###
+GET http://localhost:3000/api/comparison?page=0&limit=10&order=investmentHighest
+
+###
+GET http://localhost:3000/api/comparison?page=0&limit=3&order=revenueHighest
+
+###
+GET http://localhost:3000/api/comparison?page=0&limit=10
+
+###
+GET http://localhost:3000/api/comparison?page=0&limit=5
+
+###
+
+GET http://localhost:3000/api/comparison?page=0&limit=10&search=스타트업%20A
+
+###
+
+GET http://localhost:3000/api/comparison/1eeb63b0-0f6c-4c7a-8a74-89b7b0914a8e

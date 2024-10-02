@@ -26,6 +26,7 @@ model Company {
   virtualInvestment   BigInt     @default(0)
   myChosenCount       Int        @default(0)
   comparedChosenCount Int        @default(0)
+  createdAt           DateTime   @default(now())
   investor            Investor[]
 }
 
