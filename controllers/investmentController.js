@@ -3,79 +3,100 @@ import { asyncHandler } from "../middleware/asyncHandler.js";
 
 const prisma = new PrismaClient();
 
-// export const getInvestmentList = asyncHandler(async (req, res) => {
-//   const { page = 1, limit = 10, order = "investmentHighest" } = req.query;
-//   const pageNum = parseInt(page) > 0 ? parseInt(page) : 1;
-//   const limitNum = parseInt(limit) > 0 ? parseInt(limit) : 10;
-//   const offset = (pageNum - 1) * limitNum;
+export const getInvestmentList = asyncHandler(async (req, res) => {
+  console.log(1);
+  const { page = 1, limit = 10, order = "investmentHighest" } = req.query;
+  const pageNum = parseInt(page) > 0 ? parseInt(page) : 1;
+  const limitNum = parseInt(limit) > 0 ? parseInt(limit) : 10;
+  const offset = (pageNum - 1) * limitNum;
 
-//   const orderBy =
-//     order === "amountHighest" ? { amount: "desc" } : { amount: "asc" };
+  const orderBy =
+    order === "virtualInvestHighest"
+      ? { virtualInvestment: "desc" }
+      : order === "virtualInvestLowest"
+      ? { virtualInvestment: "asc" }
+      : order === "actualInvestHighest"
+      ? { actualInvestment: "desc" }
+      : order === "actualInvestLowest"
+      ? { actualInvestment: "asc" }
+      : { virtualInvestment: "desc" }; // 기본값 설정
 
-//   const selectFields = {
-//     id: true,
-//     investorName: true,
-//     amount: true,
-//     comment: true,
-//     password: true
-//   };
+  const selectFields = {
+    id: true,
+    logo: true,
+    name: true,
+    description: true,
+    category: true,
+    virtualInvestment: true,
+    actualInvestment: true
+  };
 
-//   const totalCount = await prisma.investment.count();
+  const totalCount = await prisma.company.count();
 
-//   const investmentList = await prisma.investment.findMany({
-//     orderBy,
-//     skip: offset,
-//     take: limitNum,
-//     select: selectFields
-//   });
+  const investmentList = await prisma.company.findMany({
+    orderBy,
+    skip: offset,
+    take: limitNum,
+    select: selectFields
+  });
 
-//   const serializedInvestmentList = investmentList.map((investment) => {
-//     return {
-//       ...investment,
-//       amount: investment.amount.toString()
-//     };
-//   });
+  const serializedCompanyList = investmentList.map((company) => {
+    return {
+      ...company,
+      totalInvestment: (
+        company.virtualInvestment + company.actualInvestment
+      ).toString(),
+      virtualInvestment: company.virtualInvestment.toString(),
+      actualInvestment: company.actualInvestment.toString()
+    };
+  });
 
-//   res.send({ data: serializedInvestmentList, totalCount: totalCount });
-// });
+  res.send({ data: serializedCompanyList, totalCount: totalCount });
+});
 
-// export const getInvestment = asyncHandler(async (req, res) => {
-//   const { id } = req.params;
+export const getInvestment = asyncHandler(async (req, res) => {
+  const { id } = req.params;
 
-//   const selectFields = {
-//     id: true,
-//     investorName: true,
-//     amount: true,
-//     comment: true,
-//     password: true
-//   };
+  const selectFields = {
+    id: true,
+    logo: true,
+    name: true,
+    description: true,
+    category: true,
+    virtualInvestment: true,
+    actualInvestment: true
+  };
 
-//   const investment = await prisma.investment.findUnique({
-//     where: { id },
-//     select: selectFields
-//   });
+  const company = await prisma.company.findUnique({
+    where: { id },
+    select: selectFields
+  });
 
-//   if (investment) {
-//     const serializedInvestment = {
-//       ...investment,
-//       amount: investment.amount.toString()
-//     };
+  if (company) {
+    const serializedCompany = {
+      ...company,
+      totalInvestment: (
+        company.virtualInvestment + company.actualInvestment
+      ).toString(),
+      virtualInvestment: company.virtualInvestment.toString(),
+      actualInvestment: company.actualInvestment.toString()
+    };
 
-//     res.send(serializedInvestment);
-//   }
-// });
+    res.send(serializedCompany);
+  }
+});
 
-// //patch 구현 필요
-// export const patchInvestment = asyncHandler(async (req, res) => {
-//   const { id } = req.params;
-//   const { amount } = req.body;
+//patch 구현 필요
+export const patchInvestment = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const { virtualInvestment } = req.body;
 
-//   const investment = await prisma.investment.update({
-//     where: { id },
-//     data: {
-//       amount
-//     }
-//   });
+  const company = await prisma.company.update({
+    where: { id },
+    data: {
+      virtualInvestment
+    }
+  });
 
-//   res.send(investment);
-// });
+  res.send(company);
+});

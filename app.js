@@ -16,6 +16,6 @@ app.use(express.json());
 
 app.use("/api", countRoutes);
 app.use("/api", companyRoutes);
-//app.use("/api", investmentRoutes);
+app.use("/api", investmentRoutes);
 
 app.listen(process.env.PORT || 3000, () => console.log("server started"));

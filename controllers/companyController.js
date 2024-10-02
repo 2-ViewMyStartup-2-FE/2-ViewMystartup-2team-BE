@@ -75,28 +75,37 @@ export const getCompanyList = asyncHandler(async (req, res) => {
       revenue: company.revenue.toString()
     };
   });
-
   // 새 sort 함수
+  const LESS_THAN = -1; // 첫 번째 요소가 두 번째 요소보다 작음
+  const EQUAL = 0; // 두 요소가 같음
+  const GREATER_THAN = 1; // 첫 번째 요소가 두 번째 요소보다 큼
+
   const orderedCompanyList = serializedCompanyList.sort((a, b) => {
-    const totalA = BigInt(a.virtualInvestment) + BigInt(a.actualInvestment); // 수정된 부분
+    const totalA = BigInt(a.virtualInvestment) + BigInt(a.actualInvestment);
     const totalB = BigInt(b.virtualInvestment) + BigInt(b.actualInvestment);
-    return;
 
-    order === "investmentHighest"
-      ? totalB - totalA
-      : order === "investmentLowest"
-      ? totalA - totalB
-      : order === "revenueHighest"
-      ? b.revenue - a.revenue
-      : order === "revenueLowest"
-      ? a.revenue - b.revenue
-      : order === "employeeHighest"
-      ? b.employee - a.employee
-      : order === "employeeLowest"
-      ? a.employee - b.employee
-      : totalB - totalA; // 기본값
+    if (order === "investmentHighest")
+      if (totalB > totalA) return 1;
+      else if (totalB < totalA) return -1;
+      else return 0;
+    else if (order === "investmentLowest")
+      if (totalA > totalB) return 1;
+      else if (totalA < totalB) return -1;
+      else return 0;
+    else if (order === "revenueHighest")
+      if (BigInt(b.revenue) > BigInt(a.revenue)) return 1;
+      else if (BigInt(b.revenue) < BigInt(a.revenue)) return -1;
+      else return 0;
+    else if (order === "revenueLowest")
+      if (BigInt(a.revenue) > BigInt(b.revenue)) return 1;
+      else if (BigInt(a.revenue) < BigInt(b.revenue)) return -1;
+      else return 0;
+    else if (order === "employeeHighest") return b.employee - a.employee;
+    else if (order === "employeeLowest") return a.employee - b.employee;
+    else if (totalB > totalA) return 1;
+    else if (totalB < totalA) return -1;
+    else return 0;
   });
-
   res.send({ data: orderedCompanyList, totalCount: totalCount });
 });
 
@@ -110,7 +119,7 @@ export const getCompany = asyncHandler(async (req, res) => {
     const serializedCompany = {
       ...company,
       totalInvestment: (
-        BigInt(company.virtualInvestment) + BigInt(company.actualInvestment)
+        company.virtualInvestment + company.actualInvestment
       ).toString(),
       actualInvestment: company.actualInvestment.toString(),
       virtualInvestment: company.virtualInvestment.toString(),
