@@ -76,10 +76,6 @@ export const getCompanyList = asyncHandler(async (req, res) => {
     };
   });
   // 새 sort 함수
-  const LESS_THAN = -1; // 첫 번째 요소가 두 번째 요소보다 작음
-  const EQUAL = 0; // 두 요소가 같음
-  const GREATER_THAN = 1; // 첫 번째 요소가 두 번째 요소보다 큼
-
   const orderedCompanyList = serializedCompanyList.sort((a, b) => {
     const totalA = BigInt(a.virtualInvestment) + BigInt(a.actualInvestment);
     const totalB = BigInt(b.virtualInvestment) + BigInt(b.actualInvestment);
