@@ -1,7 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import { asyncHandler } from "../middleware/asyncHandler.js";
 import { type } from "superstruct";
-import { convertBigIntToString, calReturnIndex } from "./contorllerHelper.js";
+import {
+  convertBigIntToString,
+  calReturnIndex,
+  compareValues
+} from "./contorllerHelper.js";
 
 const prisma = new PrismaClient();
 
@@ -75,33 +79,9 @@ export const getCompanyList = asyncHandler(async (req, res) => {
       revenue: company.revenue.toString()
     };
   });
-  // 새 sort 함수
-  const orderedCompanyList = serializedCompanyList.sort((a, b) => {
-    const totalA = BigInt(a.virtualInvestment) + BigInt(a.actualInvestment);
-    const totalB = BigInt(b.virtualInvestment) + BigInt(b.actualInvestment);
-
-    if (order === "investmentHighest")
-      if (totalB > totalA) return 1;
-      else if (totalB < totalA) return -1;
-      else return 0;
-    else if (order === "investmentLowest")
-      if (totalA > totalB) return 1;
-      else if (totalA < totalB) return -1;
-      else return 0;
-    else if (order === "revenueHighest")
-      if (BigInt(b.revenue) > BigInt(a.revenue)) return 1;
-      else if (BigInt(b.revenue) < BigInt(a.revenue)) return -1;
-      else return 0;
-    else if (order === "revenueLowest")
-      if (BigInt(a.revenue) > BigInt(b.revenue)) return 1;
-      else if (BigInt(a.revenue) < BigInt(b.revenue)) return -1;
-      else return 0;
-    else if (order === "employeeHighest") return b.employee - a.employee;
-    else if (order === "employeeLowest") return a.employee - b.employee;
-    else if (totalB > totalA) return 1;
-    else if (totalB < totalA) return -1;
-    else return 0;
-  });
+  const orderedCompanyList = serializedCompanyList.sort((a, b) =>
+    compareValues(a, b, order)
+  );
   res.send({ data: orderedCompanyList, totalCount: totalCount });
 });
 
@@ -132,17 +112,9 @@ export const getRankingNearByCompanies = asyncHandler(async (req, res) => {
     ...company,
     totalInvestment: company.actualInvestment + company.virtualInvestment
   }));
-  const sortedCompanies = companiesWithTotal.sort((a, b) => {
-    if (order === "totalInvesmentHighest")
-      return b.totalInvestment - a.totalInvestment;
-    else if (order === "totalInvestmentLowest")
-      return (a.totalInvestment - b.totalInvestment).toString();
-    else if (order === "revenueHightest") return b.revenue - a.revenue;
-    else if (order === "revenueLowest")
-      return (a.revenue - b.revenue).toString();
-    else if (order === "employeeHighest") return b.employee - a.employee;
-    else return a.employee - b.employee;
-  });
+  const sortedCompanies = companiesWithTotal.sort((a, b) =>
+    compareValues(a, b, order)
+  );
   const rankedCompanies = sortedCompanies.map((company, index) => ({
     ...convertBigIntToString(company),
     rank: index + 1

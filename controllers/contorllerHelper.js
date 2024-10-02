@@ -30,3 +30,28 @@ export const calReturnIndex = (index, length) => {
 
   return [start, end];
 };
+export const compareValues = (a, b, order) => {
+  const totalA = BigInt(a.virtualInvestment) + BigInt(a.actualInvestment);
+  const totalB = BigInt(b.virtualInvestment) + BigInt(b.actualInvestment);
+  if (order === "investmentHighest")
+    if (totalB > totalA) return 1;
+    else if (totalB < totalA) return -1;
+    else return 0;
+  else if (order === "investmentLowest")
+    if (totalA > totalB) return 1;
+    else if (totalA < totalB) return -1;
+    else return 0;
+  else if (order === "revenueHighest")
+    if (BigInt(b.revenue) > BigInt(a.revenue)) return 1;
+    else if (BigInt(b.revenue) < BigInt(a.revenue)) return -1;
+    else return 0;
+  else if (order === "revenueLowest")
+    if (BigInt(a.revenue) > BigInt(b.revenue)) return 1;
+    else if (BigInt(a.revenue) < BigInt(b.revenue)) return -1;
+    else return 0;
+  else if (order === "employeeHighest") return b.employee - a.employee;
+  else if (order === "employeeLowest") return a.employee - b.employee;
+  else if (totalB > totalA) return 1;
+  else if (totalB < totalA) return -1;
+  else return 0;
+};
