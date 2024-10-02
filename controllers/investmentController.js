@@ -101,24 +101,17 @@ export const patchInvestment = asyncHandler(async (req, res) => {
 
   res.send(company);
 });
-export const postInvestment = asyncHandler(async (req, res) => {
+export const postInvestment = async (req, res) => {
   const { id } = req.params;
   const { investorName, amount, comment, password } = req.body;
   const amountBigInt = BigInt(amount);
-  const validatedAmount = amount / 100000000;
-
-  console.log(validatedAmount);
   const investmentData = {
     investorName,
     amount: amountBigInt,
     comment,
     password
   };
-  const validatedInvsetment = {
-    ...investmentData,
-    amount: validatedAmount
-  };
-  assert(validatedInvsetment, CreateInvestment);
+  assert(investmentData, CreateInvestment);
   const investment = await prisma.investment.create({
     data: {
       ...investmentData,
@@ -127,4 +120,4 @@ export const postInvestment = asyncHandler(async (req, res) => {
   });
   const [response] = convertInvestmentsToString([investment]);
   res.status(201).send(response);
-});
+};
