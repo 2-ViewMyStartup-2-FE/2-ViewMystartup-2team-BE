@@ -22,3 +22,18 @@ GET http://localhost:3000/api/companies?page=0&limit=10&order=revenueHighest&sea
 ###
 
 GET http://localhost:3000/api/companies/5d4e1c26-6f16-464e-829f-8fcf442634e3
+###
+
+
+GET http://localhost:3000/api/companies/9d0k1c26-6f16-464e-829f-8fcf442634e3/rank?order=totalInvestmentHighest
+###
+GET http://localhost:3000/api/companies/9d0k1c26-6f16-464e-829f-8fcf442634e3/rank?order=totalInvestmentLowest
+###
+GET http://localhost:3000/api/companies/9d0k1c26-6f16-464e-829f-8fcf442634e3/rank?order=revenueHighest
+###
+GET http://localhost:3000/api/companies/9d0k1c26-6f16-464e-829f-8fcf442634e3/rank?order=revenueLowest
+###
+GET http://localhost:3000/api/companies/9d0k1c26-6f16-464e-829f-8fcf442634e3/rank?order=employeeHighest
+###
+GET http://localhost:3000/api/companies/9d0k1c26-6f16-464e-829f-8fcf442634e3/rank?order=employeeLowest
+###

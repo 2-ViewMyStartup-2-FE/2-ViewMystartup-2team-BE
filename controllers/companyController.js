@@ -1,6 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import { asyncHandler } from "../middleware/asyncHandler.js";
 import { type } from "superstruct";
+import {
+  convertBigIntToString,
+  calReturnIndex,
+  compareValues
+} from "./contorllerHelper.js";
 
 const prisma = new PrismaClient();
 
@@ -39,7 +44,6 @@ export const getCompanyList = asyncHandler(async (req, res) => {
     category: true,
     revenue: true,
     employee: true,
-    // totalInvestment: true,
     virtualInvestment: true,
     actualInvestment: true
   };
@@ -75,33 +79,9 @@ export const getCompanyList = asyncHandler(async (req, res) => {
       revenue: company.revenue.toString()
     };
   });
-  // 새 sort 함수
-  const orderedCompanyList = serializedCompanyList.sort((a, b) => {
-    const totalA = BigInt(a.virtualInvestment) + BigInt(a.actualInvestment);
-    const totalB = BigInt(b.virtualInvestment) + BigInt(b.actualInvestment);
-
-    if (order === "investmentHighest")
-      if (totalB > totalA) return 1;
-      else if (totalB < totalA) return -1;
-      else return 0;
-    else if (order === "investmentLowest")
-      if (totalA > totalB) return 1;
-      else if (totalA < totalB) return -1;
-      else return 0;
-    else if (order === "revenueHighest")
-      if (BigInt(b.revenue) > BigInt(a.revenue)) return 1;
-      else if (BigInt(b.revenue) < BigInt(a.revenue)) return -1;
-      else return 0;
-    else if (order === "revenueLowest")
-      if (BigInt(a.revenue) > BigInt(b.revenue)) return 1;
-      else if (BigInt(a.revenue) < BigInt(b.revenue)) return -1;
-      else return 0;
-    else if (order === "employeeHighest") return b.employee - a.employee;
-    else if (order === "employeeLowest") return a.employee - b.employee;
-    else if (totalB > totalA) return 1;
-    else if (totalB < totalA) return -1;
-    else return 0;
-  });
+  const orderedCompanyList = serializedCompanyList.sort((a, b) =>
+    compareValues(a, b, order)
+  );
   res.send({ data: orderedCompanyList, totalCount: totalCount });
 });
 
@@ -123,4 +103,27 @@ export const getCompany = asyncHandler(async (req, res) => {
     };
     res.send(serializedCompany);
   }
+});
+export const getRankingNearByCompanies = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const { order } = req.query;
+  const companies = await prisma.company.findMany();
+  const companiesWithTotal = companies.map((company) => ({
+    ...company,
+    totalInvestment: company.actualInvestment + company.virtualInvestment
+  }));
+  const sortedCompanies = companiesWithTotal.sort((a, b) =>
+    compareValues(a, b, order)
+  );
+  const rankedCompanies = sortedCompanies.map((company, index) => ({
+    ...convertBigIntToString(company),
+    rank: index + 1
+  }));
+  const rankIndex = rankedCompanies.findIndex((company) => company.id === id);
+  const [startIndex, endIndex] = calReturnIndex(
+    rankIndex,
+    rankedCompanies.length
+  );
+  const returnCompanies = rankedCompanies.slice(startIndex, endIndex);
+  res.send(returnCompanies);
 });
