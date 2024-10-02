@@ -9,7 +9,8 @@ export const getCompareList = asyncHandler(async (req, res) => {
   const limitNum = parseInt(limit) > 0 ? parseInt(limit) : 10;
   const offset = (pageNum - 1) * limitNum;
 
-  const orderBy = order === "recent" ? { createdAt: "desc" } : { createdAt: "asc" };
+  const orderBy =
+    order === "recent" ? { createdAt: "desc" } : { createdAt: "asc" };
 
   const selectFields = {
     id: true,
@@ -17,9 +18,10 @@ export const getCompareList = asyncHandler(async (req, res) => {
     name: true,
     description: true,
     category: true,
-    totalInvestment: true,
     virtualInvestment: true,
     actualInvestment: true,
+    myChosenCount: true,
+    comparedChosenCount: true,
     createdAt: true,
   };
 
@@ -35,8 +37,6 @@ export const getCompareList = asyncHandler(async (req, res) => {
     take: limitNum,
     select: selectFields,
   });
-
-
 
   const totalCount = await prisma.company.count({
     where: {

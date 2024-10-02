@@ -2,7 +2,7 @@ import express from "express";
 import {
   getInvestmentList,
   getInvestment,
-  patchInvestment,
+  patchInvestment
 } from "../controllers/investmentController.js";
 
 const router = express.Router();

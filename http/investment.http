@@ -2,11 +2,11 @@ GET http://localhost:3000/api/investments
 
 ###
 
-GET http://localhost:3000/api/investments/df95e350-0f72-4d7c-bf12-07346834e434
+GET http://localhost:3000/api/investments/c14n1e1c26-6f16-464e-829f-8fcf442634e3
 
 ###
 
-PATCH http://localhost:3000/api/investments/df95e350-0f72-4d7c-bf12-07346834e434
+PATCH http://localhost:3000/api/investments/c14n1e1c26-6f16-464e-829f-8fcf442634e3
 Content-Type: application/json
 
 {

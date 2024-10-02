@@ -2,7 +2,7 @@ import express from "express";
 import {
   getCountList,
   patchMyCount,
-  patchComparedCount,
+  patchComparedCount
 } from "../controllers/countController.js";
 
 const router = express.Router();
