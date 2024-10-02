@@ -9,5 +9,5 @@ const router = express.Router();
 
 router.get("/companies", getCompanyList);
 router.get("/companies/:id", getCompany);
-router.get("/companies/rank/:id", getRankingNearByCompanies);
+router.get("/companies/:id/rank", getRankingNearByCompanies);
 export default router;
