@@ -4,7 +4,6 @@ import { asyncHandler } from "../middleware/asyncHandler.js";
 const prisma = new PrismaClient();
 
 export const getInvestmentList = asyncHandler(async (req, res) => {
-  console.log(1);
   const { page = 1, limit = 10, order = "investmentHighest" } = req.query;
   const pageNum = parseInt(page) > 0 ? parseInt(page) : 1;
   const limitNum = parseInt(limit) > 0 ? parseInt(limit) : 10;

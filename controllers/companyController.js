@@ -68,7 +68,7 @@ export const getCompanyList = asyncHandler(async (req, res) => {
     return {
       ...company,
       totalInvestment: (
-        BigInt(company.virtualInvestment) + BigInt(company.actualInvestment)
+        company.virtualInvestment + company.actualInvestment
       ).toString(),
       actualInvestment: company.actualInvestment.toString(),
       virtualInvestment: company.virtualInvestment.toString(),
