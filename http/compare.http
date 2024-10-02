@@ -17,8 +17,26 @@ GET http://localhost:3000/api/comparison?page=0&limit=5
 
 ###
 
-GET http://localhost:3000/api/comparison?page=0&limit=10&search=스타트업%20A
+GET http://localhost:3000/api/comparison?page=0&limit=10&search=스마트
 
 ###
 
-GET http://localhost:3000/api/comparison/1eeb63b0-0f6c-4c7a-8a74-89b7b0914a8e
+GET http://localhost:3000/api/comparison/c20t1e1c26-6f16-464e-829f-8fcf442634e3
+
+###
+
+PATCH http://localhost:3000/api/comparison/c20t1e1c26-6f16-464e-829f-8fcf442634e3/my-compare
+Content-Type: application/json
+
+{
+    "myChosenCoun":"5"
+}
+
+###
+
+PATCH http://localhost:3000/api/comparison/c20t1e1c26-6f16-464e-829f-8fcf442634e3/company-compare
+Content-Type: application/json
+
+{
+    "comparedChosenCount":"9"
+}

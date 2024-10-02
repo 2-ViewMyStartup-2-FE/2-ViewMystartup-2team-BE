@@ -3,6 +3,20 @@ import { asyncHandler } from "../middleware/asyncHandler.js";
 
 const prisma = new PrismaClient();
 
+const convertBigIntToString = (data) => {
+  if (Array.isArray(data)) {
+    return data.map(convertBigIntToString);
+  } else if (data && typeof data === "object") {
+    return Object.fromEntries(
+      Object.entries(data).map(([key, value]) => [
+        key,
+        typeof value === "bigint" ? value.toString() : value,
+      ])
+    );
+  }
+  return data;
+};
+
 export const getCompareList = asyncHandler(async (req, res) => {
   const { page = 1, limit = 10, order = "recent", search = "" } = req.query; // 기본값 수정
   const pageNum = parseInt(page) > 0 ? parseInt(page) : 1;
@@ -62,16 +76,25 @@ export const getCompareList = asyncHandler(async (req, res) => {
 
 export const getCompare = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const companyId = parseInt(id, 10); // ID를 정수형으로 변환
+
+  const selectFields = {
+    id: true,
+    logo: true,
+    name: true,
+    description: true,
+    category: true,
+    virtualInvestment: true,
+    actualInvestment: true,
+    myChosenCount: true,
+    comparedChosenCount: true,
+    createdAt: true,
+  };
+
   const company = await prisma.company.findUnique({
-    where: { id: companyId },
+    where: { id },
+    select: selectFields,
   });
 
-  if (!company) {
-    return res.status(404).send({ message: "회사를 찾을 수 없습니다." });
-  }
-
-  // BigInt 직렬화를 위한 처리
   if (company) {
     const serializedCompany = {
       ...company,
@@ -88,38 +111,18 @@ export const getCompare = asyncHandler(async (req, res) => {
 
 export const patchMyCompare = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const companyId = parseInt(id, 10); // ID를 정수형으로 변환
-  const company = await prisma.company.findUnique({
-    where: { id: companyId },
-  });
-
-  if (!company) {
-    return res.status(404).send({ message: "회사를 찾을 수 없습니다." });
-  }
-
   const updateCount = await prisma.company.update({
-    where: { id: companyId },
+    where: { id },
     data: { myChosenCount: { increment: 1 } },
   });
-
-  res.send(updateCount);
+  res.send(convertBigIntToString(updateCount));
 });
 
 export const patchCompanyCompare = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const companyId = parseInt(id, 10); // ID를 정수형으로 변환
-  const company = await prisma.company.findUnique({
-    where: { id: companyId },
-  });
-
-  if (!company) {
-    return res.status(404).send({ message: "회사를 찾을 수 없습니다." });
-  }
-
   const updateCount = await prisma.company.update({
-    where: { id: companyId },
+    where: { id },
     data: { comparedChosenCount: { increment: 1 } },
   });
-
-  res.send(updateCount);
+  res.send(convertBigIntToString(updateCount));
 });
