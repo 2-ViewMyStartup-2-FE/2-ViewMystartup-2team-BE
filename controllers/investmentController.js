@@ -26,9 +26,8 @@ export const getInvestmentList = asyncHandler(async (req, res) => {
     name: true,
     description: true,
     category: true,
-    totalInvestment: true,
     virtualInvestment: true,
-    actualInvestment: true,
+    actualInvestment: true
   };
 
   const totalCount = await prisma.company.count();
@@ -37,7 +36,7 @@ export const getInvestmentList = asyncHandler(async (req, res) => {
     orderBy,
     skip: offset,
     take: limitNum,
-    select: selectFields,
+    select: selectFields
   });
 
   const serializedCompanyList = investmentList.map((company) => {
@@ -47,7 +46,7 @@ export const getInvestmentList = asyncHandler(async (req, res) => {
         company.virtualInvestment + company.actualInvestment
       ).toString(),
       virtualInvestment: company.virtualInvestment.toString(),
-      actualInvestment: company.actualInvestment.toString(),
+      actualInvestment: company.actualInvestment.toString()
     };
   });
 
@@ -63,14 +62,13 @@ export const getInvestment = asyncHandler(async (req, res) => {
     name: true,
     description: true,
     category: true,
-    totalInvestment: true,
     virtualInvestment: true,
-    actualInvestment: true,
+    actualInvestment: true
   };
 
   const company = await prisma.company.findUnique({
     where: { id },
-    select: selectFields,
+    select: selectFields
   });
 
   if (company) {
@@ -80,7 +78,7 @@ export const getInvestment = asyncHandler(async (req, res) => {
         company.virtualInvestment + company.actualInvestment
       ).toString(),
       virtualInvestment: company.virtualInvestment.toString(),
-      actualInvestment: company.actualInvestment.toString(),
+      actualInvestment: company.actualInvestment.toString()
     };
 
     res.send(serializedCompany);
@@ -90,13 +88,13 @@ export const getInvestment = asyncHandler(async (req, res) => {
 //patch 구현 필요
 export const patchInvestment = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const { simulatedInvestAmount } = req.body;
+  const { virtualInvestment } = req.body;
 
   const company = await prisma.company.update({
     where: { id },
     data: {
-      simulatedInvestAmount,
-    },
+      virtualInvestment
+    }
   });
 
   res.send(company);

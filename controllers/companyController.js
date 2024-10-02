@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { asyncHandler } from "../middleware/asyncHandler.js";
+import { type } from "superstruct";
 
 const prisma = new PrismaClient();
 
@@ -8,7 +9,7 @@ export const getCompanyList = asyncHandler(async (req, res) => {
     page = 1,
     limit = 10,
     order = "investmentHighest",
-    search = "",
+    search = ""
   } = req.query;
   const pageNum = parseInt(page) > 0 ? parseInt(page) : 1;
   const limitNum = parseInt(limit) > 0 ? parseInt(limit) : 10;
@@ -38,20 +39,19 @@ export const getCompanyList = asyncHandler(async (req, res) => {
     category: true,
     revenue: true,
     employee: true,
-    totalInvestment: true,
+    // totalInvestment: true,
     virtualInvestment: true,
-    actualInvestment: true,
+    actualInvestment: true
   };
 
   const totalCount = await prisma.company.count({
     where: {
       OR: [
         { name: { contains: search, mode: "insensitive" } },
-        { category: { contains: search, mode: "insensitive" } },
-      ],
-    },
+        { category: { contains: search, mode: "insensitive" } }
+      ]
+    }
   });
-
   const companyList = await prisma.company.findMany({
     // orderBy,
     skip: offset,
@@ -60,11 +60,10 @@ export const getCompanyList = asyncHandler(async (req, res) => {
     where: {
       OR: [
         { name: { contains: search, mode: "insensitive" } },
-        { category: { contains: search, mode: "insensitive" } },
-      ],
-    },
+        { category: { contains: search, mode: "insensitive" } }
+      ]
+    }
   });
-
   const serializedCompanyList = companyList.map((company) => {
     return {
       ...company,
@@ -73,33 +72,43 @@ export const getCompanyList = asyncHandler(async (req, res) => {
       ).toString(),
       actualInvestment: company.actualInvestment.toString(),
       virtualInvestment: company.virtualInvestment.toString(),
+      revenue: company.revenue.toString()
     };
   });
-
   // 새 sort 함수
   const orderedCompanyList = serializedCompanyList.sort((a, b) => {
-    return order === "investmentHighest"
-      ? b.totalInvestment - a.totalInvestment
-      : order === "investmentLowest"
-      ? a.totalInvestment - b.totalInvestment
-      : order === "revenueHighest"
-      ? b.revenue - a.revenue
-      : order === "revenueLowest"
-      ? a.revenue - b.revenue
-      : order === "employeeHighest"
-      ? b.employee - a.employee
-      : order === "employeeLowest"
-      ? a.employee - b.employee
-      : b.totalInvestment - a.totalInvestment; // 기본값
-  });
+    const totalA = BigInt(a.virtualInvestment) + BigInt(a.actualInvestment);
+    const totalB = BigInt(b.virtualInvestment) + BigInt(b.actualInvestment);
 
+    if (order === "investmentHighest")
+      if (totalB > totalA) return 1;
+      else if (totalB < totalA) return -1;
+      else return 0;
+    else if (order === "investmentLowest")
+      if (totalA > totalB) return 1;
+      else if (totalA < totalB) return -1;
+      else return 0;
+    else if (order === "revenueHighest")
+      if (BigInt(b.revenue) > BigInt(a.revenue)) return 1;
+      else if (BigInt(b.revenue) < BigInt(a.revenue)) return -1;
+      else return 0;
+    else if (order === "revenueLowest")
+      if (BigInt(a.revenue) > BigInt(b.revenue)) return 1;
+      else if (BigInt(a.revenue) < BigInt(b.revenue)) return -1;
+      else return 0;
+    else if (order === "employeeHighest") return b.employee - a.employee;
+    else if (order === "employeeLowest") return a.employee - b.employee;
+    else if (totalB > totalA) return 1;
+    else if (totalB < totalA) return -1;
+    else return 0;
+  });
   res.send({ data: orderedCompanyList, totalCount: totalCount });
 });
 
 export const getCompany = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const company = await prisma.company.findUnique({
-    where: { id },
+    where: { id }
   });
 
   if (company) {
@@ -110,6 +119,7 @@ export const getCompany = asyncHandler(async (req, res) => {
       ).toString(),
       actualInvestment: company.actualInvestment.toString(),
       virtualInvestment: company.virtualInvestment.toString(),
+      revenue: company.revenue.toString()
     };
     res.send(serializedCompany);
   }
