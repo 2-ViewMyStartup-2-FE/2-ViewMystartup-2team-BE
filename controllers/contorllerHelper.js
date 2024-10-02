@@ -11,6 +11,12 @@ export const convertBigIntToString = (data) => {
   }
   return data;
 };
+export const convertInvestmentsToString = (investments) => {
+  return investments.map((investment) => ({
+    ...convertBigIntToString(investment), // 기존 변환 함수 사용
+    amount: investment.amount.toString() // 추가적인 변환 로직
+  }));
+};
 export const calReturnIndex = (index, length) => {
   if (index === undefined) throw new Error("찾을 수 없습니다.");
 

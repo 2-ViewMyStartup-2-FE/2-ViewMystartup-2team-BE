@@ -1,6 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import { asyncHandler } from "../middleware/asyncHandler.js";
-
+import { assert } from "superstruct";
+import { CreateInvestment } from "../struct.js";
+import { convertInvestmentsToString } from "./contorllerHelper.js";
 const prisma = new PrismaClient();
 
 export const getInvestmentList = asyncHandler(async (req, res) => {
@@ -98,4 +100,31 @@ export const patchInvestment = asyncHandler(async (req, res) => {
   });
 
   res.send(company);
+});
+export const postInvestment = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const { investorName, amount, comment, password } = req.body;
+  const amountBigInt = BigInt(amount);
+  const validatedAmount = amount / 100000000;
+
+  console.log(validatedAmount);
+  const investmentData = {
+    investorName,
+    amount: amountBigInt,
+    comment,
+    password
+  };
+  const validatedInvsetment = {
+    ...investmentData,
+    amount: validatedAmount
+  };
+  assert(validatedInvsetment, CreateInvestment);
+  const investment = await prisma.investment.create({
+    data: {
+      ...investmentData,
+      companyId: id
+    }
+  });
+  const [response] = convertInvestmentsToString([investment]);
+  res.status(201).send(response);
 });
