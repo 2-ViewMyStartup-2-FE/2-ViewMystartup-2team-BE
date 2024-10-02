@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { asyncHandler } from "../middleware/asyncHandler.js";
 import { type } from "superstruct";
+import { convertBigIntToString, calReturnIndex } from "./contorllerHelper.js";
 
 const prisma = new PrismaClient();
 
@@ -39,7 +40,6 @@ export const getCompanyList = asyncHandler(async (req, res) => {
     category: true,
     revenue: true,
     employee: true,
-    // totalInvestment: true,
     virtualInvestment: true,
     actualInvestment: true
   };
@@ -123,4 +123,35 @@ export const getCompany = asyncHandler(async (req, res) => {
     };
     res.send(serializedCompany);
   }
+});
+export const getRankingNearByCompanies = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const { order } = req.query;
+  const companies = await prisma.company.findMany();
+  const companiesWithTotal = companies.map((company) => ({
+    ...company,
+    totalInvestment: company.actualInvestment + company.virtualInvestment
+  }));
+  const sortedCompanies = companiesWithTotal.sort((a, b) => {
+    if (order === "totalInvesmentHighest")
+      return b.totalInvestment - a.totalInvestment;
+    else if (order === "totalInvestmentLowest")
+      return (a.totalInvestment - b.totalInvestment).toString();
+    else if (order === "revenueHightest") return b.revenue - a.revenue;
+    else if (order === "revenueLowest")
+      return (a.revenue - b.revenue).toString();
+    else if (order === "employeeHighest") return b.employee - a.employee;
+    else return a.employee - b.employee;
+  });
+  const rankedCompanies = sortedCompanies.map((company, index) => ({
+    ...convertBigIntToString(company),
+    rank: index + 1
+  }));
+  const rankIndex = rankedCompanies.findIndex((company) => company.id === id);
+  const [startIndex, endIndex] = calReturnIndex(
+    rankIndex,
+    rankedCompanies.length
+  );
+  const returnCompanies = rankedCompanies.slice(startIndex, endIndex);
+  res.send(returnCompanies);
 });
