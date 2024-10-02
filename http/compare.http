@@ -1,0 +1,42 @@
+GET http://localhost:3000/api/comparison
+
+###
+GET http://localhost:3000/api/comparison?page=0&limit=10&order=recent
+
+###
+GET http://localhost:3000/api/comparison?page=0&limit=10&order=investmentHighest
+
+###np
+GET http://localhost:3000/api/comparison?page=0&limit=3&order=revenueHighest
+
+###
+GET http://localhost:3000/api/comparison?page=0&limit=10
+
+###
+GET http://localhost:3000/api/comparison?page=0&limit=5
+
+###
+
+GET http://localhost:3000/api/comparison?page=0&limit=10&search=스마트
+
+###
+
+GET http://localhost:3000/api/comparison/c20t1e1c26-6f16-464e-829f-8fcf442634e3
+
+###
+
+PATCH http://localhost:3000/api/comparison/c20t1e1c26-6f16-464e-829f-8fcf442634e3/my-compare
+Content-Type: application/json
+
+{
+    "myChosenCoun":"5"
+}
+
+###
+
+PATCH http://localhost:3000/api/comparison/c20t1e1c26-6f16-464e-829f-8fcf442634e3/company-compare
+Content-Type: application/json
+
+{
+    "comparedChosenCount":"9"
+}

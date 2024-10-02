@@ -10,7 +10,8 @@ export const COMPANIES = [
     revenue: BigInt(12000000000), // 120억
     employee: 50,
     myChosenCount: 5,
-    comparedChosenCount: 10
+    comparedChosenCount: 10,
+    createdAt: "2024-10-02T04:38:09.075Z",
   },
   {
     id: "7d1a2c26-6f16-464e-829f-8fcf442634e3", // UUID 형식 추가
@@ -23,7 +24,8 @@ export const COMPANIES = [
     revenue: BigInt(8000000000), // 80억
     employee: 30,
     myChosenCount: 3,
-    comparedChosenCount: 8
+    comparedChosenCount: 8,
+    createdAt: "2024-09-02T04:38:09.075Z",
   },
   {
     id: "6d3f1c26-6f16-464e-829f-8fcf442634e3", // UUID 형식 추가
@@ -36,7 +38,8 @@ export const COMPANIES = [
     revenue: BigInt(15000000000), // 150억
     employee: 40,
     myChosenCount: 7,
-    comparedChosenCount: 12
+    comparedChosenCount: 12,
+    createdAt: "2024-10-02T04:38:09.075Z",
   },
   {
     id: "5d4e1c26-6f16-464e-829f-8fcf442634e3", // UUID 형식 추가
@@ -49,7 +52,8 @@ export const COMPANIES = [
     revenue: BigInt(6000000000), // 60억
     employee: 20,
     myChosenCount: 2,
-    comparedChosenCount: 5
+    comparedChosenCount: 5,
+    createdAt: "2024-08-02T04:38:09.075Z",
   },
   {
     id: "4d5f1c26-6f16-464e-829f-8fcf442634e3", // UUID 형식 추가
@@ -62,7 +66,8 @@ export const COMPANIES = [
     revenue: BigInt(7000000000), // 70억
     employee: 25,
     myChosenCount: 4,
-    comparedChosenCount: 6
+    comparedChosenCount: 6,
+    createdAt: "2024-10-02T04:38:09.075Z",
   },
   {
     id: "3d6g1c26-6f16-464e-829f-8fcf442634e3", // UUID 형식 추가
@@ -75,7 +80,8 @@ export const COMPANIES = [
     revenue: BigInt(4000000000), // 40억
     employee: 15,
     myChosenCount: 1,
-    comparedChosenCount: 3
+    comparedChosenCount: 3,
+    createdAt: "2024-07-02T04:38:09.075Z",
   },
   {
     id: "2d7h1c26-6f16-464e-829f-8fcf442634e3", // UUID 형식 추가
@@ -88,7 +94,8 @@ export const COMPANIES = [
     revenue: BigInt(9000000000), // 90억
     employee: 35,
     myChosenCount: 6,
-    comparedChosenCount: 9
+    comparedChosenCount: 9,
+    createdAt: "2024-10-02T04:38:09.075Z",
   },
   {
     id: "1d8i1c26-6f16-464e-829f-8fcf442634e3", // UUID 형식 추가
@@ -101,7 +108,8 @@ export const COMPANIES = [
     revenue: BigInt(11000000000), // 110억
     employee: 60,
     myChosenCount: 8,
-    comparedChosenCount: 11
+    comparedChosenCount: 11,
+    createdAt: "2024-06-02T04:38:09.075Z",
   },
   {
     id: "0d9j1c26-6f16-464e-829f-8fcf442634e3", // UUID 형식 추가
@@ -114,7 +122,8 @@ export const COMPANIES = [
     revenue: BigInt(5000000000), // 50억
     employee: 18,
     myChosenCount: 2,
-    comparedChosenCount: 4
+    comparedChosenCount: 4,
+    createdAt: "2024-10-02T04:38:09.075Z",
   },
   {
     id: "9d0k1c26-6f16-464e-829f-8fcf442634e3", // UUID 형식 추가
@@ -127,7 +136,8 @@ export const COMPANIES = [
     revenue: BigInt(20000000000), // 200억
     employee: 70,
     myChosenCount: 9,
-    comparedChosenCount: 14
+    comparedChosenCount: 14,
+    createdAt: "2024-05-02T04:38:09.075Z",
   },
   {
     id: "c1a1e1c26-6f16-464e-829f-8fcf442634e3",
@@ -140,7 +150,8 @@ export const COMPANIES = [
     revenue: BigInt(9000000000), // 90억
     employee: 55,
     myChosenCount: 4,
-    comparedChosenCount: 7
+    comparedChosenCount: 7,
+    createdAt: "2024-10-02T04:38:09.075Z",
   },
   {
     id: "c2b1e1c26-6f16-464e-829f-8fcf442634e3",
@@ -153,7 +164,8 @@ export const COMPANIES = [
     revenue: BigInt(13000000000), // 130억
     employee: 45,
     myChosenCount: 5,
-    comparedChosenCount: 10
+    comparedChosenCount: 10,
+    createdAt: "2024-04-02T04:38:09.075Z",
   },
   {
     id: "c3c1e1c26-6f16-464e-829f-8fcf442634e3",
@@ -166,7 +178,8 @@ export const COMPANIES = [
     revenue: BigInt(19000000000), // 190억
     employee: 60,
     myChosenCount: 8,
-    comparedChosenCount: 12
+    comparedChosenCount: 12,
+    createdAt: "2024-10-02T04:38:09.075Z",
   },
   {
     id: "c4d1e1c26-6f16-464e-829f-8fcf442634e3",
@@ -179,7 +192,8 @@ export const COMPANIES = [
     revenue: BigInt(22000000000), // 220억
     employee: 70,
     myChosenCount: 9,
-    comparedChosenCount: 15
+    comparedChosenCount: 15,
+    createdAt: "2024-03-02T04:38:09.075Z",
   },
   {
     id: "c5e1e1c26-6f16-464e-829f-8fcf442634e3",
@@ -192,7 +206,8 @@ export const COMPANIES = [
     revenue: BigInt(14000000000), // 140억
     employee: 50,
     myChosenCount: 6,
-    comparedChosenCount: 11
+    comparedChosenCount: 11,
+    createdAt: "2024-02-02T04:38:09.075Z",
   },
   {
     id: "c6f1e1c26-6f16-464e-829f-8fcf442634e3",
@@ -205,7 +220,8 @@ export const COMPANIES = [
     revenue: BigInt(16000000000), // 160억
     employee: 65,
     myChosenCount: 7,
-    comparedChosenCount: 13
+    comparedChosenCount: 13,
+    createdAt: "2024-01-02T04:38:09.075Z",
   },
   {
     id: "c7g1e1c26-6f16-464e-829f-8fcf442634e3",
@@ -218,7 +234,8 @@ export const COMPANIES = [
     revenue: BigInt(21000000000), // 210억
     employee: 75,
     myChosenCount: 10,
-    comparedChosenCount: 14
+    comparedChosenCount: 14,
+    createdAt: "2023-10-02T04:38:09.075Z",
   },
   {
     id: "c8h1e1c26-6f16-464e-829f-8fcf442634e3",
@@ -231,7 +248,8 @@ export const COMPANIES = [
     revenue: BigInt(8000000000), // 80억
     employee: 40,
     myChosenCount: 3,
-    comparedChosenCount: 9
+    comparedChosenCount: 9,
+    createdAt: "2023-11-02T04:38:09.075Z",
   },
   {
     id: "c9i1e1c26-6f16-464e-829f-8fcf442634e3",
@@ -244,7 +262,8 @@ export const COMPANIES = [
     revenue: BigInt(13000000000), // 130억
     employee: 50,
     myChosenCount: 5,
-    comparedChosenCount: 10
+    comparedChosenCount: 10,
+    createdAt: "2023-12-02T04:38:09.075Z",
   },
   {
     id: "c10j1e1c26-6f16-464e-829f-8fcf442634e3",
@@ -257,7 +276,8 @@ export const COMPANIES = [
     revenue: BigInt(11000000000), // 110억
     employee: 35,
     myChosenCount: 4,
-    comparedChosenCount: 8
+    comparedChosenCount: 8,
+    createdAt: "2023-10-12T04:38:09.075Z",
   },
   {
     id: "c11k1e1c26-6f16-464e-829f-8fcf442634e3",
@@ -270,7 +290,8 @@ export const COMPANIES = [
     revenue: BigInt(17000000000), // 170억
     employee: 60,
     myChosenCount: 6,
-    comparedChosenCount: 12
+    comparedChosenCount: 12,
+    createdAt: "2024-10-01T04:38:09.075Z",
   },
   {
     id: "c12l1e1c26-6f16-464e-829f-8fcf442634e3",
@@ -283,7 +304,8 @@ export const COMPANIES = [
     revenue: BigInt(19000000000), // 190억
     employee: 80,
     myChosenCount: 7,
-    comparedChosenCount: 13
+    comparedChosenCount: 13,
+    createdAt: "2024-10-01T04:38:09.075Z",
   },
   {
     id: "c13m1e1c26-6f16-464e-829f-8fcf442634e3",
@@ -296,7 +318,8 @@ export const COMPANIES = [
     revenue: BigInt(16000000000), // 160억
     employee: 55,
     myChosenCount: 6,
-    comparedChosenCount: 11
+    comparedChosenCount: 11,
+    createdAt: "2024-09-03T04:38:09.075Z",
   },
   {
     id: "c14n1e1c26-6f16-464e-829f-8fcf442634e3",
@@ -309,7 +332,8 @@ export const COMPANIES = [
     revenue: BigInt(22000000000), // 220억
     employee: 75,
     myChosenCount: 8,
-    comparedChosenCount: 14
+    comparedChosenCount: 14,
+    createdAt: "2024-10-01T04:38:09.075Z",
   },
   {
     id: "c15o1e1c26-6f16-464e-829f-8fcf442634e3",
@@ -322,7 +346,8 @@ export const COMPANIES = [
     revenue: BigInt(12000000000), // 120억
     employee: 40,
     myChosenCount: 3,
-    comparedChosenCount: 9
+    comparedChosenCount: 9,
+    createdAt: "2024-10-01T04:38:09.075Z",
   },
   {
     id: "c16p1e1c26-6f16-464e-829f-8fcf442634e3",
@@ -335,7 +360,8 @@ export const COMPANIES = [
     revenue: BigInt(14000000000), // 140억
     employee: 50,
     myChosenCount: 5,
-    comparedChosenCount: 10
+    comparedChosenCount: 10,
+    createdAt: "2024-10-01T04:38:09.075Z",
   },
   {
     id: "c17q1e1c26-6f16-464e-829f-8fcf442634e3",
@@ -348,7 +374,8 @@ export const COMPANIES = [
     revenue: BigInt(17000000000), // 170억
     employee: 65,
     myChosenCount: 6,
-    comparedChosenCount: 11
+    comparedChosenCount: 11,
+    createdAt: "2024-10-01T04:38:09.075Z",
   },
   {
     id: "c18r1e1c26-6f16-464e-829f-8fcf442634e3",
@@ -361,7 +388,8 @@ export const COMPANIES = [
     revenue: BigInt(20000000000), // 200억
     employee: 80,
     myChosenCount: 9,
-    comparedChosenCount: 13
+    comparedChosenCount: 13,
+    createdAt: "2024-09-01T04:38:09.075Z",
   },
   {
     id: "c19s1e1c26-6f16-464e-829f-8fcf442634e3",
@@ -374,7 +402,8 @@ export const COMPANIES = [
     revenue: BigInt(23000000000), // 230억
     employee: 90,
     myChosenCount: 10,
-    comparedChosenCount: 15
+    comparedChosenCount: 15,
+    createdAt: "2024-10-01T04:38:09.075Z",
   },
   {
     id: "c20t1e1c26-6f16-464e-829f-8fcf442634e3",
@@ -387,8 +416,9 @@ export const COMPANIES = [
     revenue: BigInt(12000000000), // 120억
     employee: 55,
     myChosenCount: 4,
-    comparedChosenCount: 8
-  }
+    comparedChosenCount: 8,
+    createdAt: "2024-10-03T04:38:09.075Z",
+  },
 ];
 
 export const INVESTMENTS = [
@@ -398,7 +428,7 @@ export const INVESTMENTS = [
     amount: 50000000000, // 500억
     comment: "기술 혁신 프로젝트에 대한 초기 투자",
     password: "password123",
-    companyId: "8d2f1c26-6f16-464e-829f-8fcf442634e3" // 기술 혁신
+    companyId: "8d2f1c26-6f16-464e-829f-8fcf442634e3", // 기술 혁신
   },
   {
     id: "2a3b4c5d-6e7f-8g9h-0i1j-k2l3m4n5o6p7", // UUID 형식
@@ -406,7 +436,7 @@ export const INVESTMENTS = [
     amount: 20000000000, // 200억
     comment: "그린 솔루션에 대한 지속적인 지원",
     password: "securepass456",
-    companyId: "7d1a2c26-6f16-464e-829f-8fcf442634e3" // 그린 솔루션
+    companyId: "7d1a2c26-6f16-464e-829f-8fcf442634e3", // 그린 솔루션
   },
   {
     id: "3a4b5c6d-7e8f-9g0h-1i2j-k3l4m5n6o7p8", // UUID 형식
@@ -414,7 +444,7 @@ export const INVESTMENTS = [
     amount: 30000000000, // 300억
     comment: "헬스플러스의 성장 가능성에 대한 믿음",
     password: "mypassword789",
-    companyId: "6d3f1c26-6f16-464e-829f-8fcf442634e3" // 헬스플러스
+    companyId: "6d3f1c26-6f16-464e-829f-8fcf442634e3", // 헬스플러스
   },
   {
     id: "4a5b6c7d-8e9f-0g1h-2i3j-k4l5m6n7o8p9", // UUID 형식
@@ -422,7 +452,7 @@ export const INVESTMENTS = [
     amount: 10000000000, // 100억
     comment: "에듀테크 혁신을 위한 투자",
     password: "edutechpass",
-    companyId: "5d4e1c26-6f16-464e-829f-8fcf442634e3" // 에듀테크
+    companyId: "5d4e1c26-6f16-464e-829f-8fcf442634e3", // 에듀테크
   },
   {
     id: "5a6b7c8d-9e0f-1g2h-3i4j-k5l6m7n8o9p0", // UUID 형식
@@ -430,7 +460,7 @@ export const INVESTMENTS = [
     amount: 25000000000, // 250억
     comment: "푸드유나이티드의 시장 확장 지원",
     password: "foodpass321",
-    companyId: "4d5f1c26-6f16-464e-829f-8fcf442634e3" // 푸드유나이티드
+    companyId: "4d5f1c26-6f16-464e-829f-8fcf442634e3", // 푸드유나이티드
   },
   {
     id: "6a7b8c9d-0e1f-2g3h-4i5j-k6l7m8n9o0p1", // UUID 형식
@@ -438,7 +468,7 @@ export const INVESTMENTS = [
     amount: 15000000000, // 150억
     comment: "여행 친구 플랫폼에 대한 투자",
     password: "travelpass654",
-    companyId: "3d6g1c26-6f16-464e-829f-8fcf442634e3" // 여행 친구
+    companyId: "3d6g1c26-6f16-464e-829f-8fcf442634e3", // 여행 친구
   },
   {
     id: "7a8b9c0d-1e2f-3g4h-5i6j-k7l8m9n0o1p2", // UUID 형식
@@ -446,7 +476,7 @@ export const INVESTMENTS = [
     amount: 30000000000, // 300억
     comment: "패션 포워드의 디자인 혁신 지원",
     password: "fashionpass987",
-    companyId: "2d7h1c26-6f16-464e-829f-8fcf442634e3" // 패션 포워드
+    companyId: "2d7h1c26-6f16-464e-829f-8fcf442634e3", // 패션 포워드
   },
   {
     id: "8a9b0c1d-2e3f-4g5h-6i7j-k8l9m0n1o2p3", // UUID 형식
@@ -454,7 +484,7 @@ export const INVESTMENTS = [
     amount: 40000000000, // 400억
     comment: "홈 필수품의 품질 개선을 위한 투자",
     password: "homepass432",
-    companyId: "1d8i1c26-6f16-464e-829f-8fcf442634e3" // 홈 필수품
+    companyId: "1d8i1c26-6f16-464e-829f-8fcf442634e3", // 홈 필수품
   },
   {
     id: "9a0b1c2d-3e4f-5g6h-7i8j-k9l0m1n2o3p4", // UUID 형식
@@ -462,7 +492,7 @@ export const INVESTMENTS = [
     amount: 12000000000, // 120억
     comment: "디지털 마케팅 전문가의 성장 지원",
     password: "digitalpass876",
-    companyId: "0d9j1c26-6f16-464e-829f-8fcf442634e3" // 디지털 마케팅 전문가
+    companyId: "0d9j1c26-6f16-464e-829f-8fcf442634e3", // 디지털 마케팅 전문가
   },
   {
     id: "0a1b2c3d-4e5f-6g7h-8i9j-k0l1m2n3o4p5", // UUID 형식
@@ -470,6 +500,6 @@ export const INVESTMENTS = [
     amount: 60000000000, // 600억
     comment: "스마트 홈 혁신을 위한 대규모 투자",
     password: "smarthomepass",
-    companyId: "9d0k1c26-6f16-464e-829f-8fcf442634e3" // 스마트 홈
-  }
+    companyId: "9d0k1c26-6f16-464e-829f-8fcf442634e3", // 스마트 홈
+  },
 ];
