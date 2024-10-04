@@ -8,9 +8,9 @@ import {
 
 const router = express.Router();
 
-router.get("/company/:id", getCompanyDetail);
-router.post("/company/:id/investor", postInvestment);
-router.patch("/investor/:id", patchInvestment);
-router.delete("/investor/:id", deleteInvestment);
+router.get("/companies2/:id", getCompanyDetail);
+router.post("/companies2/:id/investments", postInvestment);
+router.patch("/investments/:id", patchInvestment);
+router.delete("/investments/:id", deleteInvestment);
 
 export default router;

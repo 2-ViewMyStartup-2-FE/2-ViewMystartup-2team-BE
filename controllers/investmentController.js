@@ -29,7 +29,7 @@ export const getInvestmentList = asyncHandler(async (req, res) => {
     description: true,
     category: true,
     virtualInvestment: true,
-    actualInvestment: true
+    actualInvestment: true,
   };
 
   const totalCount = await prisma.company.count();
@@ -38,7 +38,7 @@ export const getInvestmentList = asyncHandler(async (req, res) => {
     orderBy,
     skip: offset,
     take: limitNum,
-    select: selectFields
+    select: selectFields,
   });
 
   const serializedCompanyList = investmentList.map((company) => {
@@ -48,7 +48,7 @@ export const getInvestmentList = asyncHandler(async (req, res) => {
         company.virtualInvestment + company.actualInvestment
       ).toString(),
       virtualInvestment: company.virtualInvestment.toString(),
-      actualInvestment: company.actualInvestment.toString()
+      actualInvestment: company.actualInvestment.toString(),
     };
   });
 
@@ -65,12 +65,12 @@ export const getInvestment = asyncHandler(async (req, res) => {
     description: true,
     category: true,
     virtualInvestment: true,
-    actualInvestment: true
+    actualInvestment: true,
   };
 
   const company = await prisma.company.findUnique({
     where: { id },
-    select: selectFields
+    select: selectFields,
   });
 
   if (company) {
@@ -80,27 +80,13 @@ export const getInvestment = asyncHandler(async (req, res) => {
         company.virtualInvestment + company.actualInvestment
       ).toString(),
       virtualInvestment: company.virtualInvestment.toString(),
-      actualInvestment: company.actualInvestment.toString()
+      actualInvestment: company.actualInvestment.toString(),
     };
 
     res.send(serializedCompany);
   }
 });
 
-//patch 구현 필요
-export const patchInvestment = asyncHandler(async (req, res) => {
-  const { id } = req.params;
-  const { virtualInvestment } = req.body;
-
-  const company = await prisma.company.update({
-    where: { id },
-    data: {
-      virtualInvestment
-    }
-  });
-
-  res.send(company);
-});
 export const postInvestment = async (req, res) => {
   const { id } = req.params;
   const { investorName, amount, comment, password } = req.body;
@@ -109,14 +95,14 @@ export const postInvestment = async (req, res) => {
     investorName,
     amount: amountBigInt,
     comment,
-    password
+    password,
   };
   assert(investmentData, CreateInvestment);
   const investment = await prisma.investment.create({
     data: {
       ...investmentData,
-      companyId: id
-    }
+      companyId: id,
+    },
   });
   const [response] = convertInvestmentsToString([investment]);
   res.status(201).send(response);
