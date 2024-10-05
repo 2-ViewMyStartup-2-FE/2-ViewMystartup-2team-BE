@@ -1,6 +1,11 @@
+GET http://localhost:3000/api/comparison?excludeId=c20t1e1c26-6f16-464e-829f-8fcf442634e3
+
+###
+
 GET http://localhost:3000/api/comparison
 
 ###
+
 GET http://localhost:3000/api/comparison?page=0&limit=10&order=recent
 
 ###
