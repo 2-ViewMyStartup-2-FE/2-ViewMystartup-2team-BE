@@ -31,7 +31,7 @@ GET http://localhost:3000/api/companies/9d0k1c26-6f16-464e-829f-8fcf442634e3/ran
 ###
 GET http://localhost:3000/api/companies/9d0k1c26-6f16-464e-829f-8fcf442634e3/rank?order=revenueHighest
 ###
-GET http://localhost:3000/api/companies/9d0k1c26-6f16-464e-829f-8fcf442634e3/rank?order=revenueLowest
+GET postgresql://viewmystartup_user:54wR0ep5WSjM9bzBPbwbtCAZlbtKF6hn@dpg-crv4r61u0jms73akoihg-a.singapore-postgres.render.com/viewmystartup/api/companies/9d0k1c26-6f16-464e-829f-8fcf442634e3/rank?order=revenueLowest
 ###
 GET http://localhost:3000/api/companies/9d0k1c26-6f16-464e-829f-8fcf442634e3/rank?order=employeeHighest
 ###
