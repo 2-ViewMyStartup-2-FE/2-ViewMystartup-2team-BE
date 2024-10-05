@@ -18,7 +18,13 @@ const convertBigIntToString = (data) => {
 };
 
 export const getCompareList = asyncHandler(async (req, res) => {
-  const { page = 1, limit = 10, order = "recent", search = "" } = req.query; // 기본값 수정
+  const {
+    page = 1,
+    limit = 10,
+    order = "recent",
+    search = "",
+    excludeId,
+  } = req.query; // 기본값 수정
   const pageNum = parseInt(page) > 0 ? parseInt(page) : 1;
   const limitNum = parseInt(limit) > 0 ? parseInt(limit) : 10;
   const offset = (pageNum - 1) * limitNum;
@@ -45,6 +51,7 @@ export const getCompareList = asyncHandler(async (req, res) => {
         contains: search,
         mode: "insensitive",
       },
+      ...(excludeId && { id: { not: excludeId } }), //excludeId가 있을경우 해당 ID제외
     },
     orderBy,
     skip: offset,
@@ -58,6 +65,7 @@ export const getCompareList = asyncHandler(async (req, res) => {
         contains: search,
         mode: "insensitive",
       },
+      ...(excludeId && { id: { not: excludeId } }), //총 카운트에서도 제외
     },
   });
   const serializedCompanyList = investmentList.map((company) => {
