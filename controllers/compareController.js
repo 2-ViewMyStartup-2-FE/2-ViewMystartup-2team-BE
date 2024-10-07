@@ -126,11 +126,30 @@ export const patchMyCompare = asyncHandler(async (req, res) => {
   res.send(convertBigIntToString(updateCount));
 });
 
-export const patchCompanyCompare = asyncHandler(async (req, res) => {
-  const { id } = req.params;
-  const updateCount = await prisma.company.update({
-    where: { id },
-    data: { comparedChosenCount: { increment: 1 } },
-  });
-  res.send(convertBigIntToString(updateCount));
-});
+export const patchCompanyCompare = async (req, res) => {
+  const { ids } = req.params; // URL 파라미터로 ids 받기
+
+  // 쉼표로 구분된 문자열을 배열로 변환
+  const idArray = ids.split(",");
+
+  try {
+    const updatePromises = idArray.map((id) => {
+      return prisma.company.update({
+        where: { id }, // 각각의 UUID에 대해 업데이트
+        data: {
+          comparedChosenCount: {
+            increment: 1, // 해당 필드의 값을 1 증가
+          },
+        },
+      });
+    });
+
+    // 모든 업데이트 완료 대기
+    await Promise.all(updatePromises);
+
+    return res.status(200).json({ message: "Update successful for all ids" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "An error occurred while updating" });
+  }
+};
