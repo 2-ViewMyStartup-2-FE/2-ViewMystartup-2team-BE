@@ -29,7 +29,7 @@ export const getInvestmentList = asyncHandler(async (req, res) => {
     description: true,
     category: true,
     virtualInvestment: true,
-    actualInvestment: true,
+    actualInvestment: true
   };
 
   const totalCount = await prisma.company.count();
@@ -38,7 +38,7 @@ export const getInvestmentList = asyncHandler(async (req, res) => {
     orderBy,
     skip: offset,
     take: limitNum,
-    select: selectFields,
+    select: selectFields
   });
 
   const serializedCompanyList = investmentList.map((company) => {
@@ -48,7 +48,7 @@ export const getInvestmentList = asyncHandler(async (req, res) => {
         company.virtualInvestment + company.actualInvestment
       ).toString(),
       virtualInvestment: company.virtualInvestment.toString(),
-      actualInvestment: company.actualInvestment.toString(),
+      actualInvestment: company.actualInvestment.toString()
     };
   });
 
@@ -65,12 +65,12 @@ export const getInvestment = asyncHandler(async (req, res) => {
     description: true,
     category: true,
     virtualInvestment: true,
-    actualInvestment: true,
+    actualInvestment: true
   };
 
   const company = await prisma.company.findUnique({
     where: { id },
-    select: selectFields,
+    select: selectFields
   });
 
   if (company) {
@@ -80,7 +80,7 @@ export const getInvestment = asyncHandler(async (req, res) => {
         company.virtualInvestment + company.actualInvestment
       ).toString(),
       virtualInvestment: company.virtualInvestment.toString(),
-      actualInvestment: company.actualInvestment.toString(),
+      actualInvestment: company.actualInvestment.toString()
     };
 
     res.send(serializedCompany);
@@ -95,15 +95,31 @@ export const postInvestment = async (req, res) => {
     investorName,
     amount: amountBigInt,
     comment,
-    password,
+    password
   };
   assert(investmentData, CreateInvestment);
-  const investment = await prisma.investment.create({
-    data: {
-      ...investmentData,
-      companyId: id,
-    },
-  });
-  const [response] = convertInvestmentsToString([investment]);
-  res.status(201).send(response);
+  try {
+    const investment = await prisma.$transaction(async (prisma) => {
+      const newInvestment = await prisma.investment.create({
+        data: {
+          ...investmentData,
+          companyId: id
+        }
+      });
+      const company = await prisma.company.update({
+        where: { id },
+        data: {
+          virtualInvestment: {
+            increment: amountBigInt
+          }
+        }
+      });
+      return newInvestment;
+    });
+    const [response] = convertInvestmentsToString([investment]);
+    res.status(201).send(response);
+  } catch (e) {
+    console.log(e.message);
+    res.status(500).send({ error: "투자 처리중 오류가 발생했습니다." });
+  }
 };
