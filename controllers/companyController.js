@@ -58,8 +58,8 @@ export const getCompanyList = asyncHandler(async (req, res) => {
   });
   const companyList = await prisma.company.findMany({
     // orderBy,
-    skip: offset,
-    take: limitNum,
+    // skip: offset,
+    // take: limitNum,
     select: selectFields,
     where: {
       OR: [
@@ -82,7 +82,10 @@ export const getCompanyList = asyncHandler(async (req, res) => {
   const orderedCompanyList = serializedCompanyList.sort((a, b) =>
     compareValues(a, b, order)
   );
-  res.send({ data: orderedCompanyList, totalCount: totalCount });
+
+  const paginatedCompanyList = orderedCompanyList.slice(offset, offset + limitNum);
+
+  res.send({ data: paginatedCompanyList, totalCount: totalCount });
 });
 
 export const getCompany = asyncHandler(async (req, res) => {
