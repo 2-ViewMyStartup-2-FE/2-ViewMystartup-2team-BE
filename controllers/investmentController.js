@@ -87,7 +87,7 @@ export const getInvestment = asyncHandler(async (req, res) => {
   }
 });
 
-export const postInvestment = async (req, res) => {
+export const postInvestment = asyncHandler( async (req, res) => {
   const { id } = req.params;
   const { investorName, amount, comment, password } = req.body;
 
@@ -128,7 +128,7 @@ export const postInvestment = async (req, res) => {
 
   const [response] = convertInvestmentsToString([investment]);
   res.status(201).send(response);
-};
+});
 
 export const patchInvestment = asyncHandler(async (req, res) => {
   const { id } = req.params;
