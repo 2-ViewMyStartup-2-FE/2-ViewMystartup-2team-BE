@@ -30,18 +30,18 @@ GET http://localhost:3000/api/comparison/c20t1e1c26-6f16-464e-829f-8fcf442634e3
 
 ###
 
-PATCH http://localhost:3000/api/comparison/c20t1e1c26-6f16-464e-829f-8fcf442634e3/my-compare
-Content-Type: application/json
+PATCH http://localhost:3000/api/comparison/5f2b40b8-d1b3-d323-d81a-b7a8e89553d0/my-compare
+# Content-Type: application/json
 
-{
-    "myChosenCoun":"5"
-}
+# {
+#     "myChosenCoun":"5"
+# }
 
 ###
 
-PATCH http://localhost:3000/api/comparison/c20t1e1c26-6f16-464e-829f-8fcf442634e3/company-compare
-Content-Type: application/json
+PATCH http://localhost:3000/api/comparison/5f2b40b8-d1b3-d323-d81a-b7a8e89553d0,21e77067-5537-408e-cad7-e5e72bb6ad86,180ebf67-68d0-2316-e93d-8e1e546330ba/company-compare
+# Content-Type: application/json
 
-{
-    "comparedChosenCount":"9"
-}
+# {
+#     "comparedChosenCount":"9"
+# }
