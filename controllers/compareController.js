@@ -147,7 +147,7 @@ export const patchCompanyCompare = async (req, res) => {
     // 모든 업데이트 완료 대기
     await Promise.all(updatePromises);
 
-    return res.status(200).json({ message: "Update successful for all ids" });
+    return res.status(201).json({ message: "Update successful for all ids" });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "An error occurred while updating" });
