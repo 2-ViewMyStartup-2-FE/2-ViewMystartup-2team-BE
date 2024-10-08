@@ -1,4 +1,5 @@
 import * as s from "superstruct";
+
 function validateBigIntAmount(value) {
   if (value < BigInt(100000000)) return false;
   if (value >= BigInt(1000000000000)) return false;

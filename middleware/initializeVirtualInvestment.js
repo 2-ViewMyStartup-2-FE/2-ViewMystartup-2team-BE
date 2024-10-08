@@ -29,5 +29,5 @@ export const initializeVirtualInvestment = asyncHandler(async (req, res) => {
     });
   }
 
-  console.log("Virtual investment initialization complete.");
+  // console.log("Virtual investment initialization complete.");
 });
