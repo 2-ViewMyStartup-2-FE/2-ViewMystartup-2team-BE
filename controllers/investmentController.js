@@ -138,6 +138,8 @@ export const patchInvestment = asyncHandler(async (req, res) => {
   try {
     const amountBigInt = BigInt(amount);
 
+    assert({ ...req.body, amount: amountBigInt }, PatchInvestment);
+
     const investment = await prisma.$transaction(async (prisma) => {
       const existingInvestment = await prisma.investment.findUnique({
         where: { id: id },
