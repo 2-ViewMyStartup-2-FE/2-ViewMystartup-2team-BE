@@ -237,5 +237,5 @@ export const deleteInvestment = asyncHandler(async (req, res) => {
     }
   }
 
-  res.status(204).send(); // 성공적으로 삭제됨
+  res.sendStatus(204); // 성공적으로 삭제됨
 });
