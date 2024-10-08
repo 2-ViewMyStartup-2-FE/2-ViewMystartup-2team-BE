@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { asyncHandler } from "../middleware/asyncHandler.js";
 import { assert } from "superstruct";
 import { CreateInvestment } from "../struct.js";
-import { convertInvestmentsToString } from "./contorllerHelper.js";
+import { convertInvestmentsToString } from "../utils/contorllerHelper.js";
 const prisma = new PrismaClient();
 
 export const getInvestmentList = asyncHandler(async (req, res) => {
@@ -153,7 +153,9 @@ export const patchInvestment = asyncHandler(async (req, res) => {
     });
 
     const newVirtualInvestment =
-      currentCompany.virtualInvestment - existingInvestment.amount + amountBigInt;
+      currentCompany.virtualInvestment -
+      existingInvestment.amount +
+      amountBigInt;
 
     // 회사의 virtualInvestment 업데이트 (기존 금액을 차감하고 새로운 금액을 더합니다.)
     await prisma.company.update({
