@@ -1,21 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import { asyncHandler } from "../middleware/asyncHandler.js";
+import { convertBigIntToString } from "../utils/contorllerHelper.js";
 
 const prisma = new PrismaClient();
-
-const convertBigIntToString = (data) => {
-  if (Array.isArray(data)) {
-    return data.map(convertBigIntToString);
-  } else if (data && typeof data === "object") {
-    return Object.fromEntries(
-      Object.entries(data).map(([key, value]) => [
-        key,
-        typeof value === "bigint" ? value.toString() : value,
-      ])
-    );
-  }
-  return data;
-};
 
 export const getCompareList = asyncHandler(async (req, res) => {
   const {
