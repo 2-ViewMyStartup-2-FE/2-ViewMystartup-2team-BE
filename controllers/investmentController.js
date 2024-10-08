@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { asyncHandler } from "../middleware/asyncHandler.js";
 import { assert } from "superstruct";
-import { CreateInvestment } from "../struct.js";
+import { CreateInvestment, PatchInvestment } from "../struct.js";
 import { convertInvestmentsToString } from "../utils/contorllerHelper.js";
 const prisma = new PrismaClient();
 
