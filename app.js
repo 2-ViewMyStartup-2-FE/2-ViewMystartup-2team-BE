@@ -7,6 +7,7 @@ import investmentRoutes from "./routes/investmentRoutes.js";
 import compareRoutes from "./routes/compareRoutes.js";
 import companyDetailRoutes from "./routes/companyDetailRoutes.js";
 import cors from "cors";
+import { initializeVirtualInvestment } from "./middleware/initializeVirtualInvestment.js";
 
 const app = express();
 const corsOptions = {
@@ -15,6 +16,14 @@ const corsOptions = {
 
 app.use(express.json());
 app.use(cors());
+
+initializeVirtualInvestment()
+  .then(() => {
+    console.log("Virtual investment initialized successfully");
+  })
+  .catch((err) => {
+    console.error("Failed to initialize virtual investment", err);
+  });
 
 app.use("/api", countRoutes);
 app.use("/api", companyRoutes);

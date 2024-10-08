@@ -1,8 +1,8 @@
-GET http://localhost:3000/api/investments
+GET http://localhost:3000/api/investments?page=1&limit=60&order=virtualInvestLowest
 
 ###
 
-GET http://localhost:3000/api/investments/c14n1e1c26-6f16-464e-829f-8fcf442634e3
+GET http://localhost:3000/api/investments/e56b0ceb-bb30-bbec-805e-d5dc7412dcb1
 
 ###
 
@@ -23,3 +23,28 @@ Content-Type: application/json
   "password": "password123123",
   "companyId": "2d7h1c26-6f16-464e-829f-8fcf442634e3"
 }
+
+###
+
+POST http://localhost:3000/api/companies/2c0b76f3-f98d-e778-7fc9-d057f93fe995/investments
+Content-Type: application/json
+
+{
+  "investorName": "김김",
+  "amount": "300000000",
+  "comment": "정말 훌륭한 기업입니다 화이팅!!!!!!!!",
+  "password": "password123123",
+  "companyId": "2c0b76f3-f98d-e778-7fc9-d057f93fe995"
+}
+
+###
+PATCH http://localhost:3000/api/investments/66a7ec62-ee8d-4330-93e1-070e5027a26e
+Content-Type: application/json
+
+{
+  "amount":"200000000"
+}
+
+###
+
+DELETE http://localhost:3000/api/investments/726fd6f7-f5fb-452c-b4b0-4c8f642a7b2a
