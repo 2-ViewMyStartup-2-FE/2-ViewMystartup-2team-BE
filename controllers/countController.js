@@ -30,16 +30,25 @@ export const getCountList = asyncHandler(async (req, res) => {
     comparedChosenCount: true,
   };
 
+  const totalCount = await prisma.company.count();
+
   const countList = await prisma.company.findMany({
     orderBy,
-    skip: offset,
-    take: limitNum,
+    // skip: offset,
+    // take: limitNum,
     select: selectFields,
   });
 
-  const totalCount = await prisma.company.count();
+  const rankedCountList = countList.map((company, index) => {
+    return {
+      ...company,
+      rank: index + 1,
+    };
+  });
 
-  res.send({ data: countList, totalCount: totalCount });
+  const paginatedCountList = rankedCountList.slice(offset, offset + limitNum);
+
+  res.send({ data: paginatedCountList, totalCount: totalCount });
 });
 
 // 밑 부분 나중에 삭제하기
