@@ -36,12 +36,12 @@ export const getInvestmentList = asyncHandler(async (req, res) => {
 
   const investmentList = await prisma.company.findMany({
     orderBy,
-    skip: offset,
-    take: limitNum,
+    // skip: offset,
+    // take: limitNum,
     select: selectFields,
   });
 
-  const serializedCompanyList = investmentList.map((company) => {
+  const serializedCompanyList = investmentList.map((company, index) => {
     return {
       ...company,
       totalInvestment: (
@@ -49,10 +49,13 @@ export const getInvestmentList = asyncHandler(async (req, res) => {
       ).toString(),
       virtualInvestment: company.virtualInvestment.toString(),
       actualInvestment: company.actualInvestment.toString(),
+      rank: index + 1
     };
   });
 
-  res.send({ data: serializedCompanyList, totalCount: totalCount });
+  const paginatedInvestmentList = serializedCompanyList.slice(offset, offset + limitNum);
+
+  res.send({ data: paginatedInvestmentList, totalCount: totalCount });
 });
 
 export const getInvestment = asyncHandler(async (req, res) => {
