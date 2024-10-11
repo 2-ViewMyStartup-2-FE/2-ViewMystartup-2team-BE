@@ -83,7 +83,12 @@ export const getCompanyList = asyncHandler(async (req, res) => {
     compareValues(a, b, order)
   );
 
-  const paginatedCompanyList = orderedCompanyList.slice(
+  const rankedCompanyList = orderedCompanyList.map((company, index) => ({
+    ...company,
+    rank: index + 1,
+  }));
+
+  const paginatedCompanyList = rankedCompanyList.slice(
     offset,
     offset + limitNum
   );
