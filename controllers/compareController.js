@@ -17,7 +17,13 @@ export const getCompareList = asyncHandler(async (req, res) => {
   const offset = (pageNum - 1) * limitNum;
 
   const orderBy =
-    order === "recent" ? { createdAt: "desc" } : { createdAt: "asc" };
+    order === "myCountHighest"
+      ? { myChosenCount: "desc" }
+      : order === "myCountLowest"
+      ? { myChosenCount: "asc" }
+      : order === "recent"
+      ? { createdAt: "desc" } // 기본값 설정
+      : { createdAt: "asc" };
 
   const selectFields = {
     id: true,
