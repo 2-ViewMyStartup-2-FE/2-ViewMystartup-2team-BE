@@ -38,7 +38,7 @@ Content-Type: application/json
 }
 
 ###
-PATCH http://localhost:3000/api/investments/66a7ec62-ee8d-4330-93e1-070e5027a26e
+PATCH http://localhost:3000/api/investments/d4434f9a-f58e-4110-a87a-f484e1236854
 Content-Type: application/json
 
 {
@@ -47,4 +47,4 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/api/investments/726fd6f7-f5fb-452c-b4b0-4c8f642a7b2a
+DELETE http://localhost:3000/api/investments/d4434f9a-f58e-4110-a87a-f484e1236854
