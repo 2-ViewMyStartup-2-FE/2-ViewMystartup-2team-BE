@@ -54,7 +54,7 @@ export const getCompanyDetail = asyncHandler(async (req, res) => {
 
     res.send(serializedCompany);
   } else {
-    return res.status(404).send({ Error: "Company not found" });
+    return res.status(404).send({ error: "Company not found" });
   }
 });
 
