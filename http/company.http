@@ -1,7 +1,7 @@
 GET http://localhost:3000/api/companies
 
 ###
-GET http://localhost:3000/api/companies?page=0&limit=10&order=employeeHighest
+GET http://localhost:4000/api/companies?page=0&limit=10&order=employeeHighest
 
 ###
 GET http://localhost:3000/api/companies?page=0&limit=10&order=investmentHighest
@@ -21,7 +21,7 @@ GET http://localhost:3000/api/companies?page=0&limit=10&order=revenueHighest&sea
 
 ###
 
-GET http://localhost:3000/api/companies/5d4e1c26-6f16-464e-829f-8fcf442634e3
+GET http://localhost:3000/api/companies/e56b0ceb-bb30
 ###
 
 
