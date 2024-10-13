@@ -4,7 +4,7 @@ import { type } from "superstruct";
 import {
   convertBigIntToString,
   calReturnIndex,
-  compareValues,
+  compareValues
 } from "../utils/contorllerHelper.js";
 
 const prisma = new PrismaClient();
@@ -14,7 +14,7 @@ export const getCompanyList = asyncHandler(async (req, res) => {
     page = 1,
     limit = 10,
     order = "investmentHighest",
-    search = "",
+    search = ""
   } = req.query;
   const pageNum = parseInt(page) > 0 ? parseInt(page) : 1;
   const limitNum = parseInt(limit) > 0 ? parseInt(limit) : 10;
@@ -45,16 +45,16 @@ export const getCompanyList = asyncHandler(async (req, res) => {
     revenue: true,
     employee: true,
     virtualInvestment: true,
-    actualInvestment: true,
+    actualInvestment: true
   };
 
   const totalCount = await prisma.company.count({
     where: {
       OR: [
         { name: { contains: search, mode: "insensitive" } },
-        { category: { contains: search, mode: "insensitive" } },
-      ],
-    },
+        { category: { contains: search, mode: "insensitive" } }
+      ]
+    }
   });
   const companyList = await prisma.company.findMany({
     // orderBy,
@@ -64,10 +64,11 @@ export const getCompanyList = asyncHandler(async (req, res) => {
     where: {
       OR: [
         { name: { contains: search, mode: "insensitive" } },
-        { category: { contains: search, mode: "insensitive" } },
-      ],
-    },
+        { category: { contains: search, mode: "insensitive" } }
+      ]
+    }
   });
+
   const serializedCompanyList = companyList.map((company) => {
     return {
       ...company,
@@ -76,7 +77,7 @@ export const getCompanyList = asyncHandler(async (req, res) => {
       ).toString(),
       actualInvestment: company.actualInvestment.toString(),
       virtualInvestment: company.virtualInvestment.toString(),
-      revenue: company.revenue.toString(),
+      revenue: company.revenue.toString()
     };
   });
   const orderedCompanyList = serializedCompanyList.sort((a, b) =>
@@ -99,7 +100,7 @@ export const getCompanyList = asyncHandler(async (req, res) => {
 export const getCompany = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const company = await prisma.company.findUnique({
-    where: { id },
+    where: { id }
   });
 
   if (company) {
@@ -110,9 +111,11 @@ export const getCompany = asyncHandler(async (req, res) => {
       ).toString(),
       actualInvestment: company.actualInvestment.toString(),
       virtualInvestment: company.virtualInvestment.toString(),
-      revenue: company.revenue.toString(),
+      revenue: company.revenue.toString()
     };
     res.send(serializedCompany);
+  } else {
+    return res.status(404).send({ error: "Company not found" });
   }
 });
 export const getRankingNearByCompanies = asyncHandler(async (req, res) => {
@@ -121,14 +124,14 @@ export const getRankingNearByCompanies = asyncHandler(async (req, res) => {
   const companies = await prisma.company.findMany();
   const companiesWithTotal = companies.map((company) => ({
     ...company,
-    totalInvestment: company.actualInvestment + company.virtualInvestment,
+    totalInvestment: company.actualInvestment + company.virtualInvestment
   }));
   const sortedCompanies = companiesWithTotal.sort((a, b) =>
     compareValues(a, b, order)
   );
   const rankedCompanies = sortedCompanies.map((company, index) => ({
     ...convertBigIntToString(company),
-    rank: index + 1,
+    rank: index + 1
   }));
   const rankIndex = rankedCompanies.findIndex((company) => company.id === id);
   const [startIndex, endIndex] = calReturnIndex(

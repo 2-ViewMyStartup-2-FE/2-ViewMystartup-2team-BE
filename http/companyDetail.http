@@ -1,4 +1,4 @@
-GET http://localhost:4000/api/companies/e56b0ceb-bb30-bbec-805e-d5dc7412dcb1/investments
+GET http://localhost:4000/api/companies/e56b030-bbec-805e-d5dc7412dcb1/investments
 
 ###
 PATCH http://localhost:4000/api/investments/ef7dcecf-1796-48f1-aa67-2430c71ea067

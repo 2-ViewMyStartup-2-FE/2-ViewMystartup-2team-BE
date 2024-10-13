@@ -27,14 +27,14 @@ export const getCompanyDetail = asyncHandler(async (req, res) => {
         amount: true, // BigInt field
         comment: true,
         password: true,
-        companyId: true,
-      },
-    },
+        companyId: true
+      }
+    }
   };
 
   const company = await prisma.company.findUnique({
     where: { id },
-    select: selectFields,
+    select: selectFields
   });
 
   if (company) {
@@ -48,11 +48,13 @@ export const getCompanyDetail = asyncHandler(async (req, res) => {
       revenue: company.revenue.toString(),
       Investments: company.Investments.map((investment) => ({
         ...investment,
-        amount: investment.amount.toString(), // BigInt 값을 문자열로 변환
-      })),
+        amount: investment.amount.toString() // BigInt 값을 문자열로 변환
+      }))
     };
 
     res.send(serializedCompany);
+  } else {
+    return res.status(404).send({ error: "Company not found" });
   }
 });
 
@@ -69,7 +71,7 @@ export const patchInvestment = asyncHandler(async (req, res) => {
 
     const investment = await prisma.$transaction(async (prisma) => {
       const existingInvestment = await prisma.investment.findUnique({
-        where: { id: id },
+        where: { id: id }
       });
 
       if (!existingInvestment) {
@@ -79,7 +81,7 @@ export const patchInvestment = asyncHandler(async (req, res) => {
       // 회사의 현재 virtualInvestment 값을 가져옵니다.
       const currentCompany = await prisma.company.findUnique({
         where: { id: existingInvestment.companyId },
-        select: { virtualInvestment: true },
+        select: { virtualInvestment: true }
       });
 
       if (!currentCompany) {
@@ -95,8 +97,8 @@ export const patchInvestment = asyncHandler(async (req, res) => {
       await prisma.company.update({
         where: { id: existingInvestment.companyId },
         data: {
-          virtualInvestment: newVirtualInvestment,
-        },
+          virtualInvestment: newVirtualInvestment
+        }
       });
 
       // 투자 업데이트
@@ -106,8 +108,8 @@ export const patchInvestment = asyncHandler(async (req, res) => {
           amount: amountBigInt,
           investorName,
           comment,
-          password,
-        },
+          password
+        }
       });
 
       return updatedInvestment;
@@ -139,7 +141,7 @@ export const deleteInvestment = asyncHandler(async (req, res) => {
       // 투자 정보를 가져와서 회사 ID와 투자 금액을 가져옵니다.
       const investment = await prisma.investment.findUnique({
         where: { id: id },
-        select: { amount: true, companyId: true },
+        select: { amount: true, companyId: true }
       });
 
       if (!investment) {
@@ -148,7 +150,7 @@ export const deleteInvestment = asyncHandler(async (req, res) => {
 
       // 투자 삭제
       await prisma.investment.delete({
-        where: { id: id },
+        where: { id: id }
       });
 
       // 회사의 virtualInvestment 업데이트
@@ -156,9 +158,9 @@ export const deleteInvestment = asyncHandler(async (req, res) => {
         where: { id: investment.companyId },
         data: {
           virtualInvestment: {
-            decrement: investment.amount, // 가상 투자 금액을 감소시킴
-          },
-        },
+            decrement: investment.amount // 가상 투자 금액을 감소시킴
+          }
+        }
       });
     });
   } catch (error) {
