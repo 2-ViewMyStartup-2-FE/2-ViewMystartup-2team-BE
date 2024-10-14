@@ -20,22 +20,6 @@ export const getCompanyList = asyncHandler(async (req, res) => {
   const limitNum = parseInt(limit) > 0 ? parseInt(limit) : 10;
   const offset = (pageNum - 1) * limitNum;
 
-  // 기존 sort 함수
-  // const orderBy =
-  //   order === "investmentHighest"
-  //     ? { totalInvestment: "desc" }
-  //     : order === "investmentLowest"
-  //     ? { totalInvestment: "asc" }
-  //     : order === "revenueHighest"
-  //     ? { revenue: "desc" }
-  //     : order === "revenueLowest"
-  //     ? { revenue: "asc" }
-  //     : order === "employeeHighest"
-  //     ? { employee: "desc" }
-  //     : order === "employeeLowest"
-  //     ? { employee: "asc" }
-  //     : { totalInvestment: "desc" }; // 기본값 설정
-
   const selectFields = {
     id: true,
     logo: true,
@@ -56,10 +40,8 @@ export const getCompanyList = asyncHandler(async (req, res) => {
       ]
     }
   });
+
   const companyList = await prisma.company.findMany({
-    // orderBy,
-    // skip: offset,
-    // take: limitNum,
     select: selectFields,
     where: {
       OR: [
@@ -80,6 +62,7 @@ export const getCompanyList = asyncHandler(async (req, res) => {
       revenue: company.revenue.toString()
     };
   });
+
   const orderedCompanyList = serializedCompanyList.sort((a, b) =>
     compareValues(a, b, order)
   );
