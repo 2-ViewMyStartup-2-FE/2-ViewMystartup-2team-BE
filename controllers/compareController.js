@@ -11,7 +11,7 @@ export const getCompareList = asyncHandler(async (req, res) => {
     order = "recent",
     search = "",
     excludeId,
-  } = req.query; // 기본값 수정
+  } = req.query;
   const pageNum = parseInt(page) > 0 ? parseInt(page) : 1;
   const limitNum = parseInt(limit) > 0 ? parseInt(limit) : 10;
   const offset = (pageNum - 1) * limitNum;
@@ -22,7 +22,7 @@ export const getCompareList = asyncHandler(async (req, res) => {
       : order === "myCountLowest"
       ? { myChosenCount: "asc" }
       : order === "recent"
-      ? { createdAt: "desc" } // 기본값 설정
+      ? { createdAt: "desc" }
       : { createdAt: "asc" };
 
   const selectFields = {
@@ -44,7 +44,7 @@ export const getCompareList = asyncHandler(async (req, res) => {
         contains: search,
         mode: "insensitive",
       },
-      ...(excludeId && { id: { not: excludeId } }), //excludeId가 있을경우 해당 ID제외
+      ...(excludeId && { id: { not: excludeId } }),
     },
     orderBy,
     skip: offset,
@@ -58,7 +58,7 @@ export const getCompareList = asyncHandler(async (req, res) => {
         contains: search,
         mode: "insensitive",
       },
-      ...(excludeId && { id: { not: excludeId } }), //총 카운트에서도 제외
+      ...(excludeId && { id: { not: excludeId } }),
     },
   });
   const serializedCompanyList = investmentList.map((company) => {
@@ -120,24 +120,22 @@ export const patchMyCompare = asyncHandler(async (req, res) => {
 });
 
 export const patchCompanyCompare = async (req, res) => {
-  const { ids } = req.params; // URL 파라미터로 ids 받기
+  const { ids } = req.params;
 
-  // 쉼표로 구분된 문자열을 배열로 변환
   const idArray = ids.split(",");
 
   try {
     const updatePromises = idArray.map((id) => {
       return prisma.company.update({
-        where: { id }, // 각각의 UUID에 대해 업데이트
+        where: { id },
         data: {
           comparedChosenCount: {
-            increment: 1, // 해당 필드의 값을 1 증가
+            increment: 1,
           },
         },
       });
     });
 
-    // 모든 업데이트 완료 대기
     await Promise.all(updatePromises);
 
     return res.status(201).json({ message: "Update successful for all ids" });
