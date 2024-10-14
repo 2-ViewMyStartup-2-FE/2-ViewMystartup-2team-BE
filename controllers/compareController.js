@@ -44,7 +44,11 @@ export const getCompareList = asyncHandler(async (req, res) => {
         contains: search,
         mode: "insensitive",
       },
-      ...(excludeId && { id: { not: excludeId } }),
+      ...(Array.isArray(excludeId)
+        ? { id: { notIn: excludeId } } // excludeId가 배열일 경우
+        : excludeId
+        ? { id: { not: excludeId } } // excludeId가 단일 값일 경우
+        : {}), // excludeId가 없을 경우
     },
     orderBy,
     skip: offset,
@@ -58,7 +62,11 @@ export const getCompareList = asyncHandler(async (req, res) => {
         contains: search,
         mode: "insensitive",
       },
-      ...(excludeId && { id: { not: excludeId } }),
+      ...(Array.isArray(excludeId)
+        ? { id: { notIn: excludeId } } // excludeId가 배열일 경우
+        : excludeId
+        ? { id: { not: excludeId } } // excludeId가 단일 값일 경우
+        : {}), // excludeId가 없을 경우
     },
   });
   const serializedCompanyList = investmentList.map((company) => {
