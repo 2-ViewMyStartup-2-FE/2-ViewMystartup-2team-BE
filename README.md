@@ -75,6 +75,26 @@ Database: PostgreSQL
 
 이예린
 
+#### 프로젝트 초기 셋팅
+
+- 폴더 구조 생성
+- package.json 설정
+- Schema 초기 설정
+
+#### initializeVirtualInvestment
+
+- 서버 초기 배포 시 Virtual Investment의 값을 Investor table의 amount 합산 값으로 초기화 하는 로직 작성
+
+#### countController
+
+- getCountList: 정렬 기능, 페이지네이션 구현
+- patchMyCount: 삭제됨, 내 기업 선택 시 카운트 1씩 증가하는 기능
+- patchComparedCount: 삭제됨, 내 기업 선택 시 카운트 1씩 증가하는 기능
+
+#### companyController, companyDetailController
+
+- getCompany, getCompanyDetail: GET 잘못된 id 입력시 데이터 요청을 중단하고 404 띄우는 기능
+
 ### 파일구조
 
 ```
