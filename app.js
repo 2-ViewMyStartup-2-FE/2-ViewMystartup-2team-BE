@@ -11,11 +11,11 @@ import { initializeVirtualInvestment } from "./middleware/initializeVirtualInves
 
 const app = express();
 const corsOptions = {
-  origin: ["http://127.0.0.1:3000", "http://localhost:3000"], //호스트 번호 수정 가능, 나중에 FE 주소 추가 필요
+  origin: ["https://viewmystartup-teamtwo.netlify.app/"] //호스트 번호 수정 가능, 나중에 FE 주소 추가 필요
 };
 
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 initializeVirtualInvestment()
   .then(() => {
