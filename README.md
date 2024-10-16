@@ -7,7 +7,7 @@
 
 김태연 (개인 Github 링크)
 
-신지원 (개인 Github 링크)
+신지원 (https://github.com/shinji530)
 
 이예린 (개인 Github 링크)
 
@@ -38,6 +38,21 @@ Database: PostgreSQL
 김태연
 
 신지원
+
+#### companyController
+ - getCompanyList : 검색 기능, 정렬 기능, 페이지네이션 기능 구현
+ - getCompany : 특정 게시물 조회 기능 구현
+ - companyRoutes에 각 루트 구현
+
+#### investmentController
+ - getInvestmentList : 정렬 기능, 페이지네이션 기능 구현
+ - postInvestment : 투자자 정보 post 기능 구현 transaction을 활용하여 virtualInvestment 값에 투자 금액이 추가되도록 구현
+ - patchInvestment : 투자자 정보 patch 기능 구현 transaction을 활용하여 virtualInvestment 값에 투자 금액이 반영되어 총 금액이 변경되도록 구현
+ - deleteInvestment : 투자자 정보 delete 기능 구현 transaction을 활용하여 virtualInvestment 값에 투자 금액이 제외되도록 구현
+ - investmentRoutes에 각 루트 구현
+
+#### Investment 스키마 구현
+ - Company 스키마와 일대다 관계 형성
 
 이예린
 
