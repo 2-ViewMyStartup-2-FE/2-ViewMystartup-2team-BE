@@ -50,6 +50,7 @@ Database: PostgreSQL
 
 - postInvestment : 투자 정보 POST 기능 구현
 - getRankingNearByCompanies : 정렬에 따라 나의 기업의 랭킹을 매기고 나의기업을 포함해 인접한 랭킹 5개의 회사정보를 돌려주게 구현
+- struct.js 파일 생성 및 적용
 - mockData 생성
 
 신지원
