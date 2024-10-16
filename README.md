@@ -3,7 +3,7 @@
 ### 팀원 구성
 방신철 (https://github.com/bangsinchur)
 
-강명곤 (개인 Github 링크)
+강명곤 (https://github.com/GGON123)
 
 김태연 (개인 Github 링크)
 
@@ -34,6 +34,12 @@ Database: PostgreSQL
 
 
 강명곤
+
+#### companyDetailController
+ - getCompanyDetail : 해당 기업의 정보와 기업에 투자한 투자자 정보 조회 기능 구현
+ - patchInvestment : 투자자 정보 PATCH 기능 구현
+ - deleteInvestment : 투자자 정보 DELETE 기능 구현
+ - companyDetailRoutes에 각 루트 구현
 
 김태연
 
