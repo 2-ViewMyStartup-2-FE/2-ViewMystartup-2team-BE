@@ -11,7 +11,7 @@ import { initializeVirtualInvestment } from "./middleware/initializeVirtualInves
 
 const app = express();
 const corsOptions = {
-  origin: ["https://viewmystartup-teamtwo.netlify.app/"] //호스트 번호 수정 가능, 나중에 FE 주소 추가 필요
+  origin: "https://viewmystartup-teamtwo.netlify.app" //호스트 번호 수정 가능, 나중에 FE 주소 추가 필요
 };
 
 app.use(express.json());
