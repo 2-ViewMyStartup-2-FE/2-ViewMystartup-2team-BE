@@ -1,69 +1,81 @@
 # 풀스텍 2기 2팀
 
 ### 팀원 구성
+
 방신철 (https://github.com/bangsinchur)
 
 강명곤 (https://github.com/GGON123)
 
-김태연 (개인 Github 링크)
+김태연 (https://github.com/taeyeonkim94)
 
 신지원 (https://github.com/shinji530)
 
-이예린 (개인 Github 링크)
+이예린 (https://github.com/annylee0723)
 
 ### 프로젝트 소개
 
 최근에는 벤처 캐피탈에 비해 개인 투자자들의 스타트업에 대한 관심이 증가하고 있습니다. 하지만 스타트업에 관한 정보 접근성에는 여전히 큰 격차가 존재합니다. 이러한 상황을 개선하기 위해, 개인 투자자들이 스타트업을 선택하여 그들의 누적 투자 금액, 매출액 등을 확인하고 비교할 수 있는 모의 투자 서비스를 제작합니다.
 
 ### 프로젝트 기간
+
 프로젝트 기간 : 2024. 09. 25(수) ~ 2024. 10. 17(목) 2교시까지
 
 ### 기술 스택
+
 FrontEnd: React.js
 BackEnd: PrismaORM
 Database: PostgreSQL
 공통 : Github.
 
 ### 팀원별 구현 상세기능
+
 방신철
 
-#### compareCotroller 
+#### compareCotroller
+
 - GET 엔드포인트에 검색기능,exclude기능 구현
 - PATCH 엔드포인트 추가
-(여러 id를 쿼리로 받아서 동시에 여러데이터 업데이트 기능 구현)
-
+  (여러 id를 쿼리로 받아서 동시에 여러데이터 업데이트 기능 구현)
 
 강명곤
 
 #### companyDetailController
- - getCompanyDetail : 해당 기업의 정보와 기업에 투자한 투자자 정보 조회 기능 구현
- - patchInvestment : 투자자 정보 PATCH 기능 구현
- - deleteInvestment : 투자자 정보 DELETE 기능 구현
- - companyDetailRoutes에 각 루트 구현
+
+- getCompanyDetail : 해당 기업의 정보와 기업에 투자한 투자자 정보 조회 기능 구현
+- patchInvestment : 투자자 정보 PATCH 기능 구현
+- deleteInvestment : 투자자 정보 DELETE 기능 구현
+- companyDetailRoutes에 각 루트 구현
 
 김태연
+
+- postInvestment : 투자 정보 POST 기능 구현
+- getRankingNearByCompanies : 정렬에 따라 나의 기업의 랭킹을 매기고 나의기업을 포함해 인접한 랭킹 5개의 회사정보를 돌려주게 구현
+- mockData 생성
 
 신지원
 
 #### companyController
- - getCompanyList : 검색 기능, 정렬 기능, 페이지네이션 기능 구현
- - getCompany : 특정 게시물 조회 기능 구현
- - companyRoutes에 각 루트 구현
+
+- getCompanyList : 검색 기능, 정렬 기능, 페이지네이션 기능 구현
+- getCompany : 특정 게시물 조회 기능 구현
+- companyRoutes에 각 루트 구현
 
 #### investmentController
- - getInvestmentList : 정렬 기능, 페이지네이션 기능 구현
- - postInvestment : 투자자 정보 post 기능 구현 transaction을 활용하여 virtualInvestment 값에 투자 금액이 추가되도록 구현
- - patchInvestment : 투자자 정보 patch 기능 구현 transaction을 활용하여 virtualInvestment 값에 투자 금액이 반영되어 총 금액이 변경되도록 구현
- - deleteInvestment : 투자자 정보 delete 기능 구현 transaction을 활용하여 virtualInvestment 값에 투자 금액이 제외되도록 구현
- - investmentRoutes에 각 루트 구현
+
+- getInvestmentList : 정렬 기능, 페이지네이션 기능 구현
+- postInvestment : 투자자 정보 post 기능 구현 transaction을 활용하여 virtualInvestment 값에 투자 금액이 추가되도록 구현
+- patchInvestment : 투자자 정보 patch 기능 구현 transaction을 활용하여 virtualInvestment 값에 투자 금액이 반영되어 총 금액이 변경되도록 구현
+- deleteInvestment : 투자자 정보 delete 기능 구현 transaction을 활용하여 virtualInvestment 값에 투자 금액이 제외되도록 구현
+- investmentRoutes에 각 루트 구현
 
 #### Investment 스키마 구현
- - Company 스키마와 일대다 관계 형성
+
+- Company 스키마와 일대다 관계 형성
 
 이예린
 
-
 ### 파일구조
+
 ```
 2-VIEWMYSTARTUP-2TEAM-BE
 ┣ app.js
